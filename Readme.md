@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анастасия Шишова](https://up.htmlacademy.ru/react/2/user/808931).
-* Наставник: `Неизвестно`.
+* Наставник: [Артем Приходько](https://up.htmlacademy.ru/react/2/user/1012525).
 
 ---
 
