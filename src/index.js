@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from './components/main';
+import App from './components/app/app';
 
 const init = () => {
   ReactDOM.render(
-      <Main />,
+      <App />,
       document.querySelector(`#root`)
   );
 };

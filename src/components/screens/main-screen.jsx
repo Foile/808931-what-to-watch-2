@@ -1,6 +1,6 @@
 import React from "react";
 
-const Main = () => {
+const MainScreen = () => {
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -480,4 +480,4 @@ const Main = () => {
     </React.Fragment>
   );
 };
-export default Main;
+export default MainScreen;
