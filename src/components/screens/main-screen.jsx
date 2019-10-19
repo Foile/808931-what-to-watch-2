@@ -1,5 +1,5 @@
 import React from "react";
-import MoviesList from "./components/movies-list";
+import MoviesList from "./movies/movies-list";
 
 const MainScreen = () => {
   return (
