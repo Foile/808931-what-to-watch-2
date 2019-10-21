@@ -135,9 +135,7 @@ const MainScreen = () => {
             </li>
           </ul>
 
-          <MoviesList movies = {[`Macbeth`, `Aviator`, `Revenant`, `Orlando`]} >
-
-          </MoviesList>
+          <MoviesList movies = {[`Macbeth`, `Aviator`, `Revenant`, `Orlando`]} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">
