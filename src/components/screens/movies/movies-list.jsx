@@ -2,9 +2,9 @@ import React from "react";
 import {arrayOf, oneOf, func} from 'prop-types';
 
 const MoviesList = (props) => {
-  const {movies, onHeaderClickHandle} = props;
+  const {movies, onHeaderClick} = props;
   const listMovies = movies.map((name) =>
-    <article className="small-movie-card catalog__movies-card" key={name} onClick={onHeaderClickHandle}>
+    <article className="small-movie-card catalog__movies-card" key={name} onClick={onHeaderClick}>
       <div className="small-movie-card__image">
         <img
           src={`img/${name}.jpg`}
@@ -26,6 +26,6 @@ const MoviesList = (props) => {
   );
 };
 
-MoviesList.propTypes = {movies: arrayOf(oneOf([`Macbeth`, `Aviator`, `Revenant`, `Orlando`])), onHeaderClickHandle: func};
+MoviesList.propTypes = {movies: arrayOf(oneOf([`Macbeth`, `Aviator`, `Revenant`, `Orlando`])), onHeaderClick: func};
 
 export default MoviesList;
