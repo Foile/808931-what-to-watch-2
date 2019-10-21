@@ -5,7 +5,7 @@
   "description": "Личный проект «Что посмотреть» от HTML Academy",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint",
+    "test": "npm run eslint && jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
@@ -13,10 +13,15 @@
     "@babel/core": "7.6.4",
     "@babel/preset-env": "7.6.3",
     "@babel/preset-react": "7.6.3",
+    "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.15.1",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.16.0",
+    "jest": "24.9.0",
+    "react-test-renderer": "16.10.2",
     "webpack": "4.41.1",
     "webpack-cli": "3.3.9",
     "webpack-dev-server": "3.8.2"
