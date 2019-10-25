@@ -259,6 +259,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <div
@@ -267,7 +268,7 @@ Array [
             <img
               alt="Johnny English"
               height="175"
-              src="img/Johnny English.jpg"
+              src="https://es31-server.appspot.com/wtw/static/film/preview/johnny-english.jpg"
               width="280"
             />
           </div>
@@ -284,6 +285,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <div
@@ -292,7 +294,7 @@ Array [
             <img
               alt="A Star Is Born"
               height="175"
-              src="img/A Star Is Born.jpg"
+              src="https://es31-server.appspot.com/wtw/static/film/preview/A_StarIs_Born.jpg"
               width="280"
             />
           </div>
@@ -309,6 +311,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <div
@@ -317,7 +320,7 @@ Array [
             <img
               alt="Snatch"
               height="175"
-              src="img/Snatch.jpg"
+              src="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
               width="280"
             />
           </div>
@@ -334,6 +337,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <div
@@ -342,7 +346,7 @@ Array [
             <img
               alt="Bohemian Rhapsody"
               height="175"
-              src="img/Bohemian Rhapsody.jpg"
+              src="https://es31-server.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg"
               width="280"
             />
           </div>
@@ -359,6 +363,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <div
@@ -367,7 +372,7 @@ Array [
             <img
               alt="Macbeth"
               height="175"
-              src="img/Macbeth.jpg"
+              src="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
               width="280"
             />
           </div>

@@ -12,7 +12,6 @@ exports[`App correctly renders after relaunch 1`] = `
     <img
       alt="Macbeth"
       height="175"
-      src="img/Macbeth.jpg"
       width="280"
     />
   </div>
