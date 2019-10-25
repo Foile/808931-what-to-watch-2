@@ -3,7 +3,12 @@ import {arrayOf, func, shape, string} from 'prop-types';
 import MovieCard from '../movie-card-component/movie-card-component';
 
 const MoviesList = (props) => {
-  const {movies, onHeaderClick, onMouseEnter} = props;
+
+  const onHeaderClick = () => {};
+
+  const onMouseEnter = () => {};
+
+  const {movies} = props;
   const listMovies = movies.map((movie) =>
     <MovieCard key = {`card-${movie.name}`}
       movie = {movie}

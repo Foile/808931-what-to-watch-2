@@ -5,14 +5,11 @@ const MovieCard = (props) => {
   const {movie, onHeaderClick, onMouseEnter} = props;
   return <article
     className="small-movie-card catalog__movies-card"
-    onClick={onHeaderClick}
-    onMouseEnter={(evt)=>{
-      evt.preventDefault();
-      onMouseEnter(evt.target.value);
-    }}>
+    onClick={() => onHeaderClick(movie)}
+    onMouseEnter={()=> onMouseEnter(movie)}>
     <div className="small-movie-card__image">
       <img
-        src={`img/${movie.name}.jpg`}
+        src={movie.previewImage}
         alt={movie.name}
         width="280"
         height="175"

@@ -1,5 +1,5 @@
 import React from "react";
-import {arrayOf, string} from 'prop-types';
+import {arrayOf, shape, string} from 'prop-types';
 import MoviesList from "../movies-list-component/movies-list";
 
 const MainScreen = (props) => {
@@ -164,6 +164,6 @@ const MainScreen = (props) => {
   );
 };
 
-MainScreen.propTypes = {movies: arrayOf(string).isRequired};
+MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired};
 
 export default MainScreen;
