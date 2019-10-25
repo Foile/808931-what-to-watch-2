@@ -7,7 +7,11 @@ Enzyme.configure({adapter: new Adapter()});
 it(`startButton correct run afrer click`, () => {
   const onClick = jest.fn();
   const screen = shallow(
-      <MoviesList movies = {[`Macbeth`, `Aviator`, `Revenant`, `Orlando`]} onHeaderClick = {onClick}/>);
+      <MoviesList
+        movies = {[{name: `Macbeth`}, {name: `Aviator`}]}
+        onHeaderClick = {onClick}
+        onMouseEnter = {() => jest.fn()
+        }/>);
   const headers = screen.find(`.small-movie-card catalog__movies-card`);
   headers.forEach((header) => {
     header.simulate(`click`);

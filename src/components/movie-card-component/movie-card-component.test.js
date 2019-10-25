@@ -1,12 +1,15 @@
 import React from 'react';
 import renderer from "react-test-renderer";
-import MainScreen from './main-screen';
+import MovieCard from './movie-card-component';
 
 it(`App correctly renders after relaunch`, () => {
-  const movies = [{name: `Macbeth`}, {name: `Aviator`}];
+  const movie = {name: `Macbeth`};
   const tree = renderer
-  .create(<MainScreen movies = {movies} />
-  )
+  .create(<MovieCard
+    movie = {movie}
+    onHeaderClick = {()=>jest.fn()}
+    onMouseEnter={()=>jest.fn()} />)
   .toJSON();
   expect(tree).toMatchSnapshot();
 });
+
