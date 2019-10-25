@@ -7,7 +7,8 @@ const MovieCard = (props) => {
     className="small-movie-card catalog__movies-card"
     onClick={onHeaderClick}
     onMouseEnter={(evt)=>{
-      onMouseEnter(evt.target);
+      evt.preventDefault();
+      onMouseEnter(evt.target.value);
     }}>
     <div className="small-movie-card__image">
       <img

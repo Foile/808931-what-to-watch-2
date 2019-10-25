@@ -17,7 +17,13 @@ it(`MovieCard correct run afrer click and mouseEnter`, () => {
   headers.forEach((header) => {
     header.simulate(`click`);
     expect(onClick).toHaveBeenCalledTimes(1);
-    header.simulate(`mouseEnter`, movie);
+    header.simulate(`mouseEnter`, {
+      preventDefault: () => {
+      },
+      target: {
+        value: movie
+      }
+    });
     expect(onMouseEnter.toHaveBeenCalledTimes(1));
     expect(onMouseEnter.toHaveBeenCalledWith(movie));
   });
