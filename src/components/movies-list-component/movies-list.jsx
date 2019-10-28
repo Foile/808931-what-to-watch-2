@@ -10,7 +10,7 @@ const MoviesList = (props) => {
 
   const {movies} = props;
   const listMovies = movies.map((movie) =>
-    <MovieCard key = {`card-${movie.name}`}
+    <MovieCard key = {`Movie-card-${movie.name}`}
       movie = {movie}
       onHeaderClick = {onHeaderClick}
       onMouseEnter={onMouseEnter}>

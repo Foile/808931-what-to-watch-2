@@ -23,6 +23,6 @@ const MovieCard = (props) => {
   </article>;
 };
 
-MovieCard.propTypes = {movie: shape({name: string}), onHeaderClick: func, onMouseEnter: func};
+MovieCard.propTypes = {movie: shape({name: string}).isRequired, onHeaderClick: func, onMouseEnter: func};
 
 export default MovieCard;
