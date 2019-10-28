@@ -2,8 +2,8 @@ import React from 'react';
 import renderer from "react-test-renderer";
 import MovieCard from './movie-card-component';
 
-it(`App correctly renders after relaunch`, () => {
-  const movie = {name: `Macbeth`};
+it(`MovieCard correctly renders after relaunch`, () => {
+  const movie = {id: 1, name: `Macbeth`, previewImage: ``};
   const tree = renderer
   .create(<MovieCard
     movie = {movie}

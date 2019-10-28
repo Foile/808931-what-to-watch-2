@@ -8,7 +8,10 @@ it(`startButton correct run afrer click`, () => {
   const onClick = jest.fn();
   const screen = shallow(
       <MoviesList
-        movies = {[{name: `Macbeth`}, {name: `Aviator`}]}
+        movies ={[
+          {id: 1, name: `Macbeth`, previewImage: ``},
+          {id: 2, name: `Aviator`, previewImage: ``}
+        ]}
         onHeaderClick = {onClick}
         onMouseEnter = {() => jest.fn()
         }/>);

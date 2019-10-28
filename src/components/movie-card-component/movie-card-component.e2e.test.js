@@ -7,7 +7,7 @@ Enzyme.configure({adapter: new Adapter()});
 it(`MovieCard correct run afrer click and mouseEnter`, () => {
   const onClick = jest.fn();
   const onMouseEnter = jest.fn();
-  const movie = {name: `Macbeth`};
+  const movie = {id: 1, name: `Macbeth`, previewImage: ``};
   const screen = shallow(
       <MovieCard
         movie = {movie}

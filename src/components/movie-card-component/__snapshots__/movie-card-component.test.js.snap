@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App correctly renders after relaunch 1`] = `
+exports[`MovieCard correctly renders after relaunch 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -12,6 +12,7 @@ exports[`App correctly renders after relaunch 1`] = `
     <img
       alt="Macbeth"
       height="175"
+      src=""
       width="280"
     />
   </div>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App correctly renders after relaunch 1`] = `
+exports[`MoviesList correctly renders after relaunch 1`] = `
 <div
   className="catalog__movies-list"
 >
@@ -15,6 +15,7 @@ exports[`App correctly renders after relaunch 1`] = `
       <img
         alt="Macbeth"
         height="175"
+        src=""
         width="280"
       />
     </div>
@@ -40,6 +41,7 @@ exports[`App correctly renders after relaunch 1`] = `
       <img
         alt="Aviator"
         height="175"
+        src=""
         width="280"
       />
     </div>
