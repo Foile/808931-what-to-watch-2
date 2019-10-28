@@ -1,5 +1,5 @@
 import React from "react";
-import {arrayOf, func, shape, string} from 'prop-types';
+import {arrayOf, func, shape, string, number} from 'prop-types';
 import MovieCard from '../movie-card-component/movie-card-component';
 
 const MoviesList = (props) => {
@@ -10,7 +10,7 @@ const MoviesList = (props) => {
 
   const {movies} = props;
   const listMovies = movies.map((movie) =>
-    <MovieCard key = {`Movie-card-${movie.name}`}
+    <MovieCard key = {`movie-${movie.id}`}
       movie = {movie}
       onHeaderClick = {onHeaderClick}
       onMouseEnter={onMouseEnter}>
@@ -23,6 +23,7 @@ const MoviesList = (props) => {
 
 MoviesList.propTypes = {
   movies: arrayOf(shape({
+    id: number,
     name: string
   })).isRequired,
   onHeaderClick: func,
