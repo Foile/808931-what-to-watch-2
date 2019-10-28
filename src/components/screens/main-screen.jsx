@@ -1,7 +1,9 @@
 import React from "react";
-import MoviesList from "./movies/movies-list";
+import {arrayOf, shape, string} from 'prop-types';
+import MoviesList from "../movies-list-component/movies-list";
 
-const MainScreen = () => {
+const MainScreen = (props) => {
+  const {movies} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -135,7 +137,7 @@ const MainScreen = () => {
             </li>
           </ul>
 
-          <MoviesList movies = {[`Macbeth`, `Aviator`, `Revenant`, `Orlando`]} />
+          <MoviesList movies = {movies} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">
@@ -161,4 +163,7 @@ const MainScreen = () => {
     </React.Fragment>
   );
 };
+
+MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired};
+
 export default MainScreen;

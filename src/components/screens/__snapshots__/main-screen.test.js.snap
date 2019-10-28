@@ -259,6 +259,8 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -266,7 +268,6 @@ Array [
             <img
               alt="Macbeth"
               height="175"
-              src="img/Macbeth.jpg"
               width="280"
             />
           </div>
@@ -283,6 +284,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -290,7 +293,6 @@ Array [
             <img
               alt="Aviator"
               height="175"
-              src="img/Aviator.jpg"
               width="280"
             />
           </div>
@@ -302,54 +304,6 @@ Array [
               href="movie-page.html"
             >
               Aviator
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Revenant"
-              height="175"
-              src="img/Revenant.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Revenant
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Orlando"
-              height="175"
-              src="img/Orlando.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Orlando
             </a>
           </h3>
         </article>
