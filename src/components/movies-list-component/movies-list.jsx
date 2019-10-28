@@ -24,7 +24,8 @@ const MoviesList = (props) => {
 MoviesList.propTypes = {
   movies: arrayOf(shape({
     id: number,
-    name: string
+    name: string,
+    previewImage: string
   })).isRequired,
   onHeaderClick: func,
   onMouseEnter: func};

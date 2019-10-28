@@ -1,5 +1,5 @@
 import React from "react";
-import {shape, func, string} from 'prop-types';
+import {shape, func, string, number} from 'prop-types';
 
 const MovieCard = (props) => {
   const {movie, onHeaderClick, onMouseEnter} = props;
@@ -23,6 +23,10 @@ const MovieCard = (props) => {
   </article>;
 };
 
-MovieCard.propTypes = {movie: shape({name: string}).isRequired, onHeaderClick: func, onMouseEnter: func};
+MovieCard.propTypes = {movie: shape({
+  id: number,
+  name: string,
+  previewImage: string
+}).isRequired, onHeaderClick: func, onMouseEnter: func};
 
 export default MovieCard;
