@@ -268,7 +268,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster=""
               src=""
               width={280}
@@ -296,7 +295,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster=""
               src=""
               width={280}

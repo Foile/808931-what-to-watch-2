@@ -268,7 +268,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster="https://es31-server.appspot.com/wtw/static/film/preview/johnny-english.jpg"
               src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
               width={280}
@@ -296,7 +295,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster="https://es31-server.appspot.com/wtw/static/film/preview/A_StarIs_Born.jpg"
               src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
               width={280}
@@ -324,7 +322,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
               src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
               width={280}
@@ -352,7 +349,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster="https://es31-server.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg"
               src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
               width={280}
@@ -380,7 +376,6 @@ Array [
           >
             <video
               height={175}
-              muted={true}
               poster="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
               src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
               width={280}

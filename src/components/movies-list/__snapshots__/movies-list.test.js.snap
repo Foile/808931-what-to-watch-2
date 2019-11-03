@@ -15,7 +15,6 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
     >
       <video
         height={175}
-        muted={true}
         poster=""
         src=""
         width={280}
@@ -43,7 +42,6 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
     >
       <video
         height={175}
-        muted={true}
         poster=""
         src=""
         width={280}
