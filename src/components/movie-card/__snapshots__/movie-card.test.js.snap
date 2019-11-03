@@ -5,15 +5,17 @@ exports[`MovieCard correctly renders after relaunch 1`] = `
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
   onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Macbeth"
-      height="175"
+    <video
+      height={175}
+      muted={true}
+      poster=""
       src=""
-      width="280"
+      width={280}
     />
   </div>
   <h3

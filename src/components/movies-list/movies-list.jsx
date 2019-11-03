@@ -1,6 +1,6 @@
 import React from "react";
 import {arrayOf, func, shape, string, number} from 'prop-types';
-import MovieCard from '../movie-card-component/movie-card-component';
+import MovieCard from '../movie-card/movie-card';
 
 const MoviesList = (props) => {
 
