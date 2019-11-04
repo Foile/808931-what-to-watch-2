@@ -15,7 +15,9 @@ it(`VideoPlayer has pause and play state`, () => {
     height={175}
     playerState={{isPlaying: false}}
   />);
-
+  window.HTMLMediaElement.prototype.load = () => { /* do nothing */ };
+  window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+  window.HTMLMediaElement.prototype.pause = () => { /* do nothing */ };
   expect(player.state().isPlaying).toBe(false);
 
   player.setProps({playerState: {isPlaying: true}});
