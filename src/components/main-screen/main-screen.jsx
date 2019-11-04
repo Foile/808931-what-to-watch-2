@@ -1,6 +1,6 @@
 import React from "react";
 import {arrayOf, shape, string} from 'prop-types';
-import MoviesList from "../movies-list-component/movies-list";
+import MoviesList from "../movies-list/movies-list";
 
 const MainScreen = (props) => {
   const {movies} = props;

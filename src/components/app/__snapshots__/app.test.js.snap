@@ -261,15 +261,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Johnny English"
-              height="175"
-              src="https://es31-server.appspot.com/wtw/static/film/preview/johnny-english.jpg"
-              width="280"
+            <video
+              height={175}
+              poster="https://es31-server.appspot.com/wtw/static/film/preview/johnny-english.jpg"
+              src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+              width={280}
             />
           </div>
           <h3
@@ -287,15 +288,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="A Star Is Born"
-              height="175"
-              src="https://es31-server.appspot.com/wtw/static/film/preview/A_StarIs_Born.jpg"
-              width="280"
+            <video
+              height={175}
+              poster="https://es31-server.appspot.com/wtw/static/film/preview/A_StarIs_Born.jpg"
+              src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+              width={280}
             />
           </div>
           <h3
@@ -313,15 +315,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Snatch"
-              height="175"
-              src="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
-              width="280"
+            <video
+              height={175}
+              poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
+              src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+              width={280}
             />
           </div>
           <h3
@@ -339,15 +342,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="https://es31-server.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg"
-              width="280"
+            <video
+              height={175}
+              poster="https://es31-server.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg"
+              src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+              width={280}
             />
           </div>
           <h3
@@ -365,15 +369,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
-              width="280"
+            <video
+              height={175}
+              poster="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
+              src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+              width={280}
             />
           </div>
           <h3

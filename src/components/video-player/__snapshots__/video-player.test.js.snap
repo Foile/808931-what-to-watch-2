@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer correctly renders after relaunch 1`] = `
+<video
+  height={175}
+  poster=""
+  src=""
+  width={280}
+/>
+`;
