@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
-
+import {connect} from 'react-redux';
+import {ActionCreator} from "../../reducer";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -9,17 +10,38 @@ class App extends React.PureComponent {
 
     this.state = {
       genre: `All genres`,
-      films: this.props.films
+      films: props.films
     };
   }
 
   render() {
-    return <MainScreen movies = {this.state.films} />;
+    const {films, onChangeGenre, onGetMovies} = this.props;
+    return <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} />;
   }
 }
 App.propTypes = {films: PropTypes.arrayOf(
     PropTypes.shape({
     })
-)};
+).isRequired,
+onChangeGenre: PropTypes.func.isRequired,
+onGetMovies: PropTypes.func.isRequired};
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  const res = Object.assign({}, ownProps, {
+    genre: state.genre,
+    films: state.films
+  });
+
+  return res;
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeGenre: (genre) => {
+    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.getMovies());
+  },
+  onGetMovies: () => dispatch(ActionCreator.getMovies())
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

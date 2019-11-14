@@ -1,11 +1,11 @@
 import React from "react";
-import {arrayOf, shape, string} from 'prop-types';
+import {arrayOf, shape, string, func} from 'prop-types';
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
 import {genres} from '../../mocks/films';
 
 const MainScreen = (props) => {
-  const {movies} = props;
+  const {movies, onChangeGenre} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -85,7 +85,7 @@ const MainScreen = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList genres = {genres} />
+          <GenresList genres = {genres} onGenreClick={onChangeGenre}/>
           <MoviesList movies = {movies} />
 
           <div className="catalog__more">
@@ -113,6 +113,7 @@ const MainScreen = (props) => {
   );
 };
 
-MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired};
+MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired,
+  onChangeGenre: func};
 
 export default MainScreen;
