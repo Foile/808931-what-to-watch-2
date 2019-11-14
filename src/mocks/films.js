@@ -91,4 +91,6 @@ const films = [{
 }
 ];
 
+export const genres = [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
+
 export default films;
