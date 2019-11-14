@@ -12,7 +12,6 @@ const filterMovies = (movies, genre) => genre !== `All genres` ?
   movies;
 
 const reducer = (state = initialState, action) => {
-  console.log(state, action);
   switch (action.type) {
     case `CHANGE_GENRE`: return Object.assign({}, state, {genre: action.payload});
     case `GET_MOVIES`: return Object.assign({}, state, {films: filterMovies(state.films, state.genre)});
