@@ -21,6 +21,10 @@ class App extends React.PureComponent {
 }
 App.propTypes = {films: PropTypes.arrayOf(
     PropTypes.shape({
+      genre: PropTypes.string,
+      name: PropTypes.string,
+      previewImage: PropTypes.string,
+      videoLink: PropTypes.string
     })
 ).isRequired,
 onChangeGenre: PropTypes.func.isRequired,
