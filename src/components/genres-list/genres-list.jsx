@@ -5,13 +5,12 @@ class GenresList extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this._onGenreClick = props.onGenreClick;
     this._clickHandler = this._clickHandler.bind(this);
   }
 
   _clickHandler(evt) {
     evt.preventDefault();
-    this._onGenreClick(evt.target.id);
+    this.props.onGenreClick(evt.target.id);
   }
 
   render() {
