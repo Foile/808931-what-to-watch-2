@@ -8,7 +8,7 @@ import films from './mocks/films';
 
 
 const init = (movies) => {
-  const store = createStore(reducer, {genre: `All genres`, films: movies});
+  const store = createStore(reducer, {genre: `All genres`, films: movies, allFilms: movies});
   ReactDOM.render(<Provider store={store}>
     <App films={movies}/>
   </Provider>,

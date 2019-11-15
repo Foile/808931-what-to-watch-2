@@ -1,5 +1,3 @@
-
-const initialState = {genre: `All genres`, films: []};
 const ActionCreator = {
   changeGenre: (genre) => {
     return {type: `CHANGE_GENRE`, payload: genre};
@@ -8,13 +6,13 @@ const ActionCreator = {
 };
 
 const filterMovies = (movies, genre) => genre !== `All genres` ?
-  movies.filter(({genre: movieGenre})=>movieGenre === genre) :
+  movies.filter(({genre: movieGenre})=> movieGenre === genre) :
   movies;
 
-const reducer = (state = initialState, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case `CHANGE_GENRE`: return Object.assign({}, state, {genre: action.payload});
-    case `GET_MOVIES`: return Object.assign({}, state, {films: filterMovies(state.films, state.genre)});
+    case `GET_MOVIES`: return Object.assign({}, state, {films: filterMovies(state.allFilms, state.genre)});
   }
   return state;
 };
