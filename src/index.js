@@ -7,13 +7,13 @@ import {reducer} from "./reducer";
 import films from './mocks/films';
 
 
-const init = (movies) => {
-  const store = createStore(reducer, {genre: `All genres`, films: movies, allFilms: movies});
+const init = () => {
+  const store = createStore(reducer, {genre: `All genres`, films, allFilms: films});
   ReactDOM.render(<Provider store={store}>
-    <App films={movies}/>
+    <App />
   </Provider>,
   document.querySelector(`#root`)
   );
 };
 
-init(films);
+init();

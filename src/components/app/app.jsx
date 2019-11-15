@@ -7,11 +7,6 @@ import {ActionCreator} from "../../reducer";
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      genre: `All genres`,
-      films: props.films
-    };
   }
 
   render() {
