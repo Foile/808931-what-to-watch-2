@@ -4,20 +4,16 @@ import PropTypes from 'prop-types';
 class GenresList extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this._clickHandler = this._clickHandler.bind(this);
-  }
-
-  _clickHandler(evt) {
-    evt.preventDefault();
-    this.props.onGenreClick(evt.target.id);
   }
 
   render() {
     const {genres} = this.props;
 
     const listGenres = genres.map((genre)=>
-      <li className="catalog__genres-item" key={`catalog__genres-item--${genre}`} onClick={this._clickHandler}>
+      <li className="catalog__genres-item" key={`catalog__genres-item--${genre}`} onClick={(evt)=>{
+        evt.preventDefault();
+        this.props.onGenreClick(genre);
+      }}>
         <a href="#" className="catalog__genres-link" id={genre}>
           {genre}
         </a>
