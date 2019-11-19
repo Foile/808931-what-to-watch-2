@@ -6,7 +6,7 @@ exports[`App correctly renders after relaunch 1`] = `
 >
   <li
     className="catalog__genres-item"
-    onClick={[Function]}
+    onActiveChange={[Function]}
   >
     <a
       className="catalog__genres-link"
@@ -18,7 +18,7 @@ exports[`App correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
-    onClick={[Function]}
+    onActiveChange={[Function]}
   >
     <a
       className="catalog__genres-link"

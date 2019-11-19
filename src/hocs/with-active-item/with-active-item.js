@@ -11,7 +11,6 @@ const withActiveItem = (Component) => {
 
     render() {
       const {activeItem} = this.state;
-      console.log(`HOC`, activeItem);
       return (
         <Component
           {...this.props}
