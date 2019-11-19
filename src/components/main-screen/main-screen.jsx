@@ -85,9 +85,9 @@ const MainScreen = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
+
           <GenresList genres = {genres} onGenreClick={onChangeGenre}/>
           <MoviesList movies = {movies} />
-
           <div className="catalog__more">
             <button className="catalog__button" type="button">
               Show more
