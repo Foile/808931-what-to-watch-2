@@ -1,13 +1,11 @@
 import React from 'react';
 import renderer from "react-test-renderer";
-import {App} from './app';
+import GenresList from './genres-list';
 
 it(`App correctly renders after relaunch`, () => {
+  const genres = [`Comedy`, `Drama`];
   const tree = renderer
-  .create(<App
-    films={[{genre: `Comedy`, name: `Mask`, videoLink: ``, previewImage: ``}]}
-    onChangeGenre={jest.fn()}
-    onGetMovies={jest.fn()}/>
+  .create(<GenresList genres = {genres} />
   )
   .toJSON();
   expect(tree).toMatchSnapshot();
