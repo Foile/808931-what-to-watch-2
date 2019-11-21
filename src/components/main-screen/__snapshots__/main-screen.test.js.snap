@@ -154,37 +154,34 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item"
-          onActiveChange={[Function]}
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
-            id="All genres"
           >
             All genres
           </a>
         </li>
         <li
-          className="catalog__genres-item"
-          onActiveChange={[Function]}
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
-            id="Comedy"
           >
             Comedy
           </a>
         </li>
         <li
-          className="catalog__genres-item"
-          onActiveChange={[Function]}
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
-            id="Drama"
           >
             Drama
           </a>

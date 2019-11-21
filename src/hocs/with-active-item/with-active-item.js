@@ -1,27 +1,29 @@
-import React from "react";
+import React, {PureComponent} from 'react';
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends React.PureComponent {
+  class WithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
-      this.state = {activeItem: undefined};
 
-      this._activeItemChangeHandler = this._activeItemChangeHandler.bind(this);
+      this.state = {
+        activeItem: -1,
+      };
+
+      this._onChangeActiveItemHandler = this._onChangeActiveItemHandler.bind(this);
+    }
+
+    _onChangeActiveItemHandler(item) {
+      this.setState({
+        activeItem: item,
+      });
     }
 
     render() {
-      const {activeItem} = this.state;
-      return (
-        <Component
-          {...this.props}
-          activeItem={activeItem}
-          onActiveChange={this._activeItemChangeHandler}
-        />
-      );
-    }
-
-    _activeItemChangeHandler(item) {
-      this.setState({activeItem: item});
+      return <Component
+        {...this.props}
+        activeItem = {this.state.activeItem}
+        onChangeActiveItem = {this._onChangeActiveItemHandler}
+      />;
     }
   }
 

@@ -2,10 +2,16 @@ import React from "react";
 import {arrayOf, shape, string, func} from 'prop-types';
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
-import {genres} from '../../mocks/films';
+import {genres} from "../../mocks/films";
+import withActiveItem from "./../../hocs/with-active-item/with-active-item";
+
+const GenresListWrapped = withActiveItem(GenresList);
+const MoviesListWrapped = withActiveItem(MoviesList);
 
 const MainScreen = (props) => {
   const {movies, onChangeGenre} = props;
+  // eslint-disable-next-line no-console
+  console.log(props);
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -86,8 +92,8 @@ const MainScreen = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList genres = {genres} onGenreClick={onChangeGenre}/>
-          <MoviesList movies = {movies} />
+          <GenresListWrapped genres = {genres} onGenreClick={onChangeGenre}/>
+          <MoviesListWrapped movies = {movies} />
           <div className="catalog__more">
             <button className="catalog__button" type="button">
               Show more
@@ -114,6 +120,6 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired,
-  onChangeGenre: func};
+  onChangeGenre: func.isRequired};
 
 export default MainScreen;
