@@ -114,6 +114,6 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired,
-  onChangeGenre: func};
+  onChangeGenre: func.isRequired};
 
 export default MainScreen;
