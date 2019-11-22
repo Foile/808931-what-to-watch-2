@@ -7,14 +7,16 @@ class MoviesList extends PureComponent {
   constructor(props) {
     super(props);
   }
+
   render() {
-    const {movies, onHeaderClick, activeItem = -1, onChangeActiveItem = ()=>{}} = this.props;
+    const {movies, onHeaderClick, activeItem, onChangeActiveItem} = this.props;
     return <div className="catalog__movies-list">{movies.map((movie, i) =>
       <MovieCard key = {`movie-${movie.id}`}
         movie = {movie}
         onHeaderClick = {onHeaderClick}
-        onMouseEnter={onChangeActiveItem(i)}
-        isPlaying={i === activeItem}>\
+        onMouseEnter = {() => onChangeActiveItem(i)}
+        onMouseLeave = {() => onChangeActiveItem(-1)}
+        isPlaying={i === activeItem}>
       </MovieCard>
     )}</div>;
   }
