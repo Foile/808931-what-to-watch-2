@@ -27,7 +27,7 @@ onGetMovies: PropTypes.func.isRequired};
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
-    genre: state.genre,
+    genre: state.activeItem,
     films: state.films
   });
 
