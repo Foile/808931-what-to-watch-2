@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MoviesList from './movies-list';
+import {MoviesList} from './movies-list';
 Enzyme.configure({adapter: new Adapter()});
 
 it(`startButton correct run afrer click`, () => {
@@ -13,8 +13,7 @@ it(`startButton correct run afrer click`, () => {
           {id: 2, name: `Aviator`, previewImage: ``, videoLink: ``}
         ]}
         onHeaderClick = {onClick}
-        onMouseEnter = {() => jest.fn()
-        }/>);
+        onMouseEnter = {() => jest.fn()}/>);
   const headers = screen.find(`.small-movie-card catalog__movies-card`);
   headers.forEach((header) => {
     header.simulate(`click`);

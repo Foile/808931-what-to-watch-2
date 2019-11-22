@@ -5,25 +5,23 @@ exports[`App correctly renders after relaunch 1`] = `
   className="catalog__genres-list"
 >
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
     onClick={[Function]}
   >
     <a
       className="catalog__genres-link"
       href="#"
-      id="Comedy"
     >
       Comedy
     </a>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
     onClick={[Function]}
   >
     <a
       className="catalog__genres-link"
       href="#"
-      id="Drama"
     >
       Drama
     </a>

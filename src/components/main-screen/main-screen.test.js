@@ -8,7 +8,7 @@ it(`App correctly renders after relaunch`, () => {
     {id: 2, name: `Aviator`, previewImage: ``, videoLink: ``}
   ];
   const tree = renderer
-  .create(<MainScreen movies = {movies} />
+  .create(<MainScreen movies = {movies} onChangeGenre={jest.fn()}/>
   )
   .toJSON();
   expect(tree).toMatchSnapshot();

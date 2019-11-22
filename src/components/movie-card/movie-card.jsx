@@ -38,13 +38,18 @@ export default class MovieCard extends PureComponent {
   }
 
   render() {
-    const {movie} = this.props;
+    const {movie, onMouseEnter, onMouseLeave} = this.props;
     const {previewImage, name, videoLink} = movie;
     return <article
       className="small-movie-card catalog__movies-card"
       onClick={() => this._handleMovieClick()}
-      onMouseEnter={() => this._handleMovieEnter()}
-      onMouseLeave={() => this._handleMovieLeave()}
+      onMouseEnter={() => {
+        onMouseEnter(); this._handleMovieEnter();
+      }}
+      onMouseLeave={() => {
+        onMouseLeave();
+        this._handleMovieLeave();
+      }}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
@@ -69,6 +74,9 @@ MovieCard.propTypes = {movie: shape({
   id: number,
   name: string,
   previewImage: string
-}).isRequired, onHeaderClick: func, onMouseEnter: func};
+}).isRequired,
+onHeaderClick: func,
+onMouseEnter: func,
+onMouseLeave: func};
 
 
