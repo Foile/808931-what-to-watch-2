@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
 import {connect} from 'react-redux';
-import {ActionCreator} from "../../reducer";
+import ActionCreator from "../../reducers/action-creator/action-creator";
+import getVisibleMovies from "../../selectors/selector";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -28,7 +29,7 @@ onGetMovies: PropTypes.func.isRequired};
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     genre: state.activeItem,
-    films: state.films
+    films: getVisibleMovies(state.allFilms)
   });
 
   return res;
