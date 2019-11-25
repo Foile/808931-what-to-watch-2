@@ -5,15 +5,14 @@ describe(`Reducer works correctly`, () => {
   it(`Reducer return default`, () => expect(
       reducer(undefined, {})).toEqual({}));
 
-  it(`Reducer filters movies`, () => expect(
+  it(`Reducer get movies`, () => expect(
       reducer({
         genre: `Comedy`,
-        allFilms: [{genre: `Comedy`}, {genre: `Drama`}],
-        films: []},
-      {type: `GET_MOVIES`})
+        allFilms: [{genre: `Comedy`}, {genre: `Drama`}]},
+      {type: `GET_MOVIES`, payload: [{genre: `Comedy`}, {genre: `Drama`}]})
   ).toEqual({
     genre: `Comedy`,
-    allFilms: [{genre: `Comedy`}, {genre: `Drama`}], films: [{genre: `Comedy`}]
+    allFilms: [{genre: `Comedy`}, {genre: `Drama`}]
   }));
 
   it(`Reducer changes genre`, () => expect(

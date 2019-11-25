@@ -1,11 +1,7 @@
 import {ActionType} from '../action-creator/action-creator';
 import ActionCreator from '../action-creator/action-creator';
 
-const initialState = {films: [],
-  allfilms: [],
-  genres: [],
-  genre: `All genres`
-};
+const initialState = {};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
