@@ -7,13 +7,7 @@ export const ActionType = {
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
-
-const snakeToCamel = (snakeString) => snakeString.replace(
-    /([-_][a-z])/g,
-    (group) => group.toUpperCase()
-                  .replace(`-`, ``)
-                  .replace(`_`, ``)
-);
+const snakeToCamel = (snakeString) => snakeString.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace(`-`, ``).replace(`_`, ``));
 
 const convertMovieData = (movie) => {
   const newMovie = {};
@@ -23,9 +17,15 @@ const convertMovieData = (movie) => {
   return newMovie;
 };
 
+const convertMoviesData = (movies) => movies.map((movie) => convertMovieData(movie));
+
+
 const ActionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
-  getMovies: (films) => ({type: ActionType.GET_MOVIES, payload: films.map((film) => convertMovieData(film))}),
+  getMovies: (films) => {
+    const res = {type: ActionType.GET_MOVIES, payload: convertMoviesData(films)};
+    return res;
+  },
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
   requireAuthorization: () => ({type: ActionType.REQUIRE_AUTH, payload: true})
 };

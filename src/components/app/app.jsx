@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
 import {connect} from 'react-redux';
 import ActionCreator from "../../reducers/action-creator/action-creator";
-import getVisibleMovies from "../../selectors/selector";
+import getFilteredMovies from "../../selectors/selector";
+import ErrorBoundary from "./../error";
+
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -11,8 +13,8 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {films, onChangeGenre, onGetMovies} = this.props;
-    return <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} />;
+    const {films, onChangeGenre, onGetMovies, genres} = this.props;
+    return <ErrorBoundary><MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} genres={genres} /></ErrorBoundary>;
   }
 }
 App.propTypes = {films: PropTypes.arrayOf(
@@ -24,23 +26,24 @@ App.propTypes = {films: PropTypes.arrayOf(
     })
 ).isRequired,
 onChangeGenre: PropTypes.func.isRequired,
-onGetMovies: PropTypes.func.isRequired};
+onGetMovies: PropTypes.func.isRequired,
+genres: PropTypes.arrayOf(PropTypes.string)};
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     genre: state.activeItem,
-    films: getVisibleMovies(state.allFilms)
-  });
+    films: getFilteredMovies(state),
+    genres: state.genres || [`All genres`],
 
+  });
   return res;
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeGenre: (genre) => {
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.getMovies());
   },
-  onGetMovies: () => dispatch(ActionCreator.getMovies())
+  onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies))
 });
 
 export {App};

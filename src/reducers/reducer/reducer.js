@@ -1,7 +1,13 @@
 import {ActionType} from '../action-creator/action-creator';
 import ActionCreator from '../action-creator/action-creator';
 
-const reducer = (state = {}, action) => {
+const initialState = {films: [],
+  allfilms: [],
+  genres: [],
+  genre: `All genres`
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE: return Object.assign({}, state, {genre: action.payload});
     case ActionType.GET_MOVIES: return Object.assign({}, state, {allFilms: action.payload});
