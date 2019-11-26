@@ -3,22 +3,22 @@ import reducer from './reducer';
 describe(`Reducer works correctly`, () => {
 
   it(`Reducer return default`, () => expect(
-      reducer(undefined, {})).toEqual({}));
+      reducer(undefined, {})).toEqual({data: {}, user: {}}));
 
   it(`Reducer get movies`, () => expect(
       reducer({
-        genre: `Comedy`,
-        allFilms: [{genre: `Comedy`}, {genre: `Drama`}]},
+        user: {genre: `Comedy`},
+        data: {allFilms: [{genre: `Comedy`}, {genre: `Drama`}]}},
       {type: `GET_MOVIES`, payload: [{genre: `Comedy`}, {genre: `Drama`}]})
   ).toEqual({
-    genre: `Comedy`,
-    allFilms: [{genre: `Comedy`}, {genre: `Drama`}]
+    user: {genre: `Comedy`},
+    data: {allFilms: [{genre: `Comedy`}, {genre: `Drama`}]}
   }));
 
   it(`Reducer changes genre`, () => expect(
       reducer(
-          {genre: `All genres`,
-            films: [{genre: `Comedy`}, {genre: `Drama`}]},
+          {user: {genre: `All genres`},
+            data: {}},
           {type: `CHANGE_GENRE`, payload: `Comedy`})
-  ).toEqual({genre: `Comedy`, films: [{genre: `Comedy`}, {genre: `Drama`}]}));
+  ).toEqual({user: {genre: `Comedy`}, data: {}}));
 });
