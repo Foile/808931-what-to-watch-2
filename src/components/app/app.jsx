@@ -31,11 +31,12 @@ genres: PropTypes.arrayOf(PropTypes.string)};
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
-    genre: state.activeItem,
+    genre: state.user.genre,
     films: getFilteredMovies(state),
-    genres: state.genres || [`All genres`],
+    genres: state.data.genres || [`All genres`],
 
   });
+  console.log(res);
   return res;
 };
 

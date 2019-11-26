@@ -1,16 +1,15 @@
 import {createSelector} from 'reselect';
 
-const getFilmList = (state) => state.allFilms ? state.allFilms : [];
-const getActiveGenre = (state) => state.genre ? state.genre : `All genres`;
+const getFilmList = (state) => state.data.allFilms ? state.data.allFilms : [];
+
+const getActiveGenre = (state) => state.user.genre ? state.user.genre : `All genres`;
 
 const getFilteredMovies = createSelector(
     getFilmList,
     getActiveGenre,
-    (movies, genre) =>{
-      return genre !== `All genres` ?
-        movies.filter(({genre: movieGenre})=> movieGenre === genre) :
-        movies;
-    }
+    (movies, genre) => genre !== `All genres` ?
+      movies.filter(({genre: movieGenre}) => movieGenre === genre) :
+      movies
 );
 
 export default getFilteredMovies;

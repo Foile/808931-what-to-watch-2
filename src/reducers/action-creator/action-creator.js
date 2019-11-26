@@ -19,7 +19,6 @@ const convertMovieData = (movie) => {
 
 const convertMoviesData = (movies) => movies.map((movie) => convertMovieData(movie));
 
-
 const ActionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
   getMovies: (films) => {
@@ -29,4 +28,5 @@ const ActionCreator = {
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
   requireAuthorization: () => ({type: ActionType.REQUIRE_AUTH, payload: true})
 };
+
 export default ActionCreator;
