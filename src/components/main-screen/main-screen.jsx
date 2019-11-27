@@ -2,7 +2,6 @@ import React, {PureComponent} from "react";
 import {arrayOf, shape, string, func} from 'prop-types';
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
-import {genres} from "../../mocks/films";
 
 export default class MainScreen extends PureComponent {
   constructor(props) {
@@ -10,7 +9,7 @@ export default class MainScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onChangeGenre} = this.props;
+    const {movies, onChangeGenre, genres} = this.props;
     return (
       <React.Fragment>
         <section className="movie-card">
@@ -119,4 +118,5 @@ export default class MainScreen extends PureComponent {
 }
 
 MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired,
-  onChangeGenre: func.isRequired};
+  onChangeGenre: func.isRequired,
+  genres: arrayOf(string)};
