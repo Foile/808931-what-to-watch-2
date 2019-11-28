@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {arrayOf, shape, string, func} from 'prop-types';
+import {arrayOf, shape, string, func} from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
 

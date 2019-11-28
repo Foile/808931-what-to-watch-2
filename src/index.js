@@ -10,6 +10,8 @@ import apiDispatcher from "./reducers/api-dispatcher/api-dispatcher";
 import createAPI from "./api";
 import App from "./components/app/app";
 
+import {BrowserRouter} from "react-router-dom";
+
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));
 
@@ -23,7 +25,9 @@ const init = () => {
   store.dispatch(apiDispatcher.loadFilms());
 
   ReactDOM.render(<Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.querySelector(`#root`)
   );
