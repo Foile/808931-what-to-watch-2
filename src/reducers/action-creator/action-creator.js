@@ -3,7 +3,8 @@ export const ActionType = {
   GET_MOVIES: `GET_MOVIES`,
   CHANGE_GENRE: `CHANGE_GENRE`,
   GET_GENRES: `GET_GENRES`,
-  REQUIRE_AUTH: `REQUIRE_AUTH`
+  REQUIRE_AUTH: `REQUIRE_AUTH`,
+  LOGIN: `LOGIN`
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
@@ -26,7 +27,8 @@ const ActionCreator = {
     return res;
   },
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
-  requireAuthorization: () => ({type: ActionType.REQUIRE_AUTH, payload: true})
+  requireAuthorization: () => ({type: ActionType.REQUIRE_AUTH, payload: true}),
+  login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}})
 };
 
 export default ActionCreator;

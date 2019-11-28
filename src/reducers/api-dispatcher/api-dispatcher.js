@@ -11,10 +11,17 @@ const apiDispatcher = {
   },
   checkAuth: () => (dispatch) => {
     return api.get(`/login`)
-      .then((response) => {
-        dispatch(ActionCreator.requireAuthorization(response.data));
+      .then(() => {
+        dispatch(ActionCreator.requireAuthorization(true));
       });
-  }
+  },
+  login: (email, password) => (dispatch) => {
+    return api.post(`/login`, {email, password})
+      .then((response) => {
+        console.log(response);
+        dispatch(ActionCreator.requireAuthorization(false));
+      });
+  },
 };
 
 export default apiDispatcher;
