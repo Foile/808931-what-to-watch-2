@@ -2,7 +2,7 @@
 import axios from 'axios';
 import ActionCreator from './reducers/action-creator/action-creator';
 
-const API_URL = `https://htmlacademy-react-2.appspot.com`;
+export const API_URL = `https://htmlacademy-react-2.appspot.com`;
 
 export const api = axios.create({
   baseURL: `${API_URL}/wtw`,

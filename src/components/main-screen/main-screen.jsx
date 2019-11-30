@@ -3,8 +3,7 @@ import {arrayOf, shape, string, func} from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
 import {Link} from "react-router-dom";
-
-const SRC_URL = `https://htmlacademy-react-2.appspot.com`;
+import {API_URL} from "../../api";
 
 export default class MainScreen extends PureComponent {
   constructor(props) {
@@ -37,7 +36,7 @@ export default class MainScreen extends PureComponent {
             <div className="user-block">
               { auth ? <div className="user-block__avatar">
                 <img
-                  src={`${SRC_URL}/${auth.avatarUrl}`}
+                  src={`${API_URL}/${auth.avatarUrl}`}
                   alt={auth.name}
                   width="63"
                   height="63"
