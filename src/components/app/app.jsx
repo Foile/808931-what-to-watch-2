@@ -7,6 +7,7 @@ import ActionCreator from "../../reducers/action-creator/action-creator";
 import getFilteredMovies from "../../selectors/selector";
 import ErrorBoundary from "./../error";
 import {Switch, Route} from "react-router-dom";
+import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -14,14 +15,14 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, requireAuthorization} = this.props;
+    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth} = this.props;
     return <Switch>
       <Route path="/" exact render={() => <ErrorBoundary>
-        <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} genres={genres} />
+        <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} genres={genres} auth={auth} />
       </ErrorBoundary>}/>
       <Route path="/login" exact render={() =>
         <ErrorBoundary>
-          <Login submitHandler={submitHandler} requireAuthorization={requireAuthorization}/>
+          <Login submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>
         </ErrorBoundary>}/>
     </Switch>;
   }
@@ -39,14 +40,16 @@ onChangeGenre: PropTypes.func.isRequired,
 onGetMovies: PropTypes.func.isRequired,
 genres: PropTypes.arrayOf(PropTypes.string),
 submitHandler: PropTypes.func,
-requireAuthorization: PropTypes.bool};
+isAuthorizationRequired: PropTypes.bool,
+auth: PropTypes.shape({})};
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     genre: state.activeItem,
     films: getFilteredMovies(state),
     genres: state.data.genres || [`All genres`],
-    requireAuthorization: state.user.requireAuthorization,
+    isAuthorizationRequired: state.user.isAuthorizationRequired,
+    auth: state.user.auth
   });
   return res;
 };
@@ -56,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeGenre(genre));
   },
   onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies)),
-  submitHandler: (email, password) => dispatch(ActionCreator.login(email, password))
+  submitHandler: (email, password) => dispatch(apiDispatcher.login(email, password))
 });
 
 export {App};

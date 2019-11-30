@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 import renderer from "react-test-renderer";
-import MainScreen from './main-screen';
+import MainScreen from "./main-screen";
+import {BrowserRouter} from "react-router-dom";
 
 it(`App correctly renders after relaunch`, () => {
   const movies = [
@@ -8,7 +9,9 @@ it(`App correctly renders after relaunch`, () => {
     {id: 2, name: `Aviator`, previewImage: ``, videoLink: ``}
   ];
   const tree = renderer
-  .create(<MainScreen movies = {movies} onChangeGenre={jest.fn()} genres={[`All genres`, `Comedy`]} />
+  .create(<BrowserRouter>
+    <MainScreen movies = {movies} onChangeGenre={jest.fn()} genres={[`All genres`, `Comedy`]} />
+  </BrowserRouter>
   )
   .toJSON();
   expect(tree).toMatchSnapshot();

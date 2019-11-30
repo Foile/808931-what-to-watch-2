@@ -2,6 +2,9 @@ import React, {PureComponent} from "react";
 import {arrayOf, shape, string, func} from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
+import {Link} from "react-router-dom";
+
+const SRC_URL = `https://htmlacademy-react-2.appspot.com`;
 
 export default class MainScreen extends PureComponent {
   constructor(props) {
@@ -9,7 +12,7 @@ export default class MainScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onChangeGenre, genres} = this.props;
+    const {movies, onChangeGenre, genres, auth} = this.props;
     return (
       <React.Fragment>
         <section className="movie-card">
@@ -32,14 +35,15 @@ export default class MainScreen extends PureComponent {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
+              { auth ? <div className="user-block__avatar">
                 <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
+                  src={`${SRC_URL}/${auth.avatarUrl}`}
+                  alt={auth.name}
                   width="63"
                   height="63"
                 />
-              </div>
+              </div> :
+                <Link to="/login">Sign in</Link>}
             </div>
           </header>
 
@@ -123,4 +127,5 @@ export default class MainScreen extends PureComponent {
 
 MainScreen.propTypes = {movies: arrayOf(shape({name: string})).isRequired,
   onChangeGenre: func.isRequired,
+  auth: shape({}),
   genres: arrayOf(string)};

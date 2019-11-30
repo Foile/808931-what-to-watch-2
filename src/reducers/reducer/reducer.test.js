@@ -3,7 +3,7 @@ import reducer from './reducer';
 describe(`Reducer works correctly`, () => {
 
   it(`Reducer return default`, () => expect(
-      reducer(undefined, {})).toEqual({data: {}, user: {}}));
+      reducer(undefined, {})).toEqual({data: {}, user: {"isAuthorizationRequired": false}}));
 
   it(`Reducer get movies`, () => expect(
       reducer({

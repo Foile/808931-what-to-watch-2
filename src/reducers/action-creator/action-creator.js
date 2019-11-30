@@ -4,21 +4,22 @@ export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   GET_GENRES: `GET_GENRES`,
   REQUIRE_AUTH: `REQUIRE_AUTH`,
-  LOGIN: `LOGIN`
+  LOGIN: `LOGIN`,
+  AUTH: `AUTH`
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
 const snakeToCamel = (snakeString) => snakeString.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace(`-`, ``).replace(`_`, ``));
 
-const convertMovieData = (movie) => {
-  const newMovie = {};
-  Object.keys(movie).forEach((prop) =>{
-    newMovie[snakeToCamel(prop)] = movie[prop];
+const convertData = (origin) => {
+  const newObject = {};
+  Object.keys(origin).forEach((prop) =>{
+    newObject[snakeToCamel(prop)] = origin[prop];
   });
-  return newMovie;
+  return newObject;
 };
 
-const convertMoviesData = (movies) => movies.map((movie) => convertMovieData(movie));
+const convertMoviesData = (movies) => movies.map((movie) => convertData(movie));
 
 const ActionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
@@ -27,8 +28,9 @@ const ActionCreator = {
     return res;
   },
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
-  requireAuthorization: () => ({type: ActionType.REQUIRE_AUTH, payload: true}),
-  login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}})
+  requireAuthorization: (isRequired) => ({type: ActionType.REQUIRE_AUTH, payload: isRequired}),
+  login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}}),
+  auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)})
 };
 
 export default ActionCreator;

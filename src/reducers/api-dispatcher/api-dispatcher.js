@@ -17,9 +17,9 @@ const apiDispatcher = {
   },
   login: (email, password) => (dispatch) => {
     return api.post(`/login`, {email, password})
-      .then((response) => {
-        console.log(response);
+      .then(({data}) => {
         dispatch(ActionCreator.requireAuthorization(false));
+        dispatch(ActionCreator.auth(data));
       });
   },
 };

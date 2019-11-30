@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 
 const Login = (props) => {
-  const {submitHandler, requireAuthorization} = props;
-  console.log(props);
-  return requireAuthorization === false ? <Redirect to="/"></Redirect>
+  const {submitHandler, isAuthorizationRequired} = props;
+  return isAuthorizationRequired === false ? <Redirect to="/"></Redirect>
     : <div className="sign-in user-page__content">
       <form action="#" className="sign-in__form" onSubmit={
         (evt) => {
@@ -34,7 +33,7 @@ const Login = (props) => {
 
 Login.propTypes = {
   submitHandler: PropTypes.func,
-  requireAuthorization: PropTypes.bool
+  isAuthorizationRequired: PropTypes.bool
 };
 
 export default Login;

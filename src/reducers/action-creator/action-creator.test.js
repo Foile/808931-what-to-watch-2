@@ -12,6 +12,6 @@ describe(`ActionCreator works correctly`, () => {
   it(`ActionCreator for get genres`, () => expect(ActionCreator.getGenres([{genre: `Comedy`}, {genre: `Comedy`}, {genre: `Drama`}]
   )).toEqual({type: ActionType.GET_GENRES, payload: [`All genres`, `Comedy`, `Drama`]}));
 
-  it(`ActionCreator for get required auth`, () => expect(ActionCreator.requireAuthorization()).toEqual({type: ActionType.REQUIRE_AUTH, payload: true}));
+  it(`ActionCreator for get required auth`, () => expect(ActionCreator.requireAuthorization(true)).toEqual({type: ActionType.REQUIRE_AUTH, payload: true}));
 
 });
