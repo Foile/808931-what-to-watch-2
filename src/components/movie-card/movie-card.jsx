@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
-import {shape, func, string, number} from 'prop-types';
-import VideoPlayer from '../video-player/video-player';
+import {shape, func, string, number} from "prop-types";
+import VideoPlayer from "../video-player/video-player";
+import {Link} from "react-router-dom";
 
 export default class MovieCard extends PureComponent {
   constructor(props) {
@@ -13,15 +14,8 @@ export default class MovieCard extends PureComponent {
     this.timerId = null;
     this.HOVER_DELAY = 1000;
 
-    this._handleMovieClick = this._handleMovieClick.bind(this);
     this._handleMovieEnter = this._handleMovieEnter.bind(this);
     this._handleMovieLeave = this._handleMovieLeave.bind(this);
-  }
-
-  _handleMovieClick() {
-    const {movie} = this.props;
-
-    location.href = `/film-overview-${movie.id}`;
   }
 
   _handleMovieEnter() {
@@ -39,10 +33,10 @@ export default class MovieCard extends PureComponent {
 
   render() {
     const {movie, onMouseEnter, onMouseLeave} = this.props;
-    const {previewImage, name, videoLink} = movie;
+    const {previewImage, name, videoLink, id} = movie;
     return <article
       className="small-movie-card catalog__movies-card"
-      onClick={() => this._handleMovieClick()}
+
       onMouseEnter={() => {
         onMouseEnter(); this._handleMovieEnter();
       }}
@@ -62,9 +56,9 @@ export default class MovieCard extends PureComponent {
         />
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">
+        <Link to ={`films/${id}`} className="small-movie-card__link" href="movie-page.html">
           {name}
-        </a>
+        </Link>
       </h3>
     </article>;
   }
@@ -75,7 +69,6 @@ MovieCard.propTypes = {movie: shape({
   name: string,
   previewImage: string
 }).isRequired,
-onHeaderClick: func,
 onMouseEnter: func,
 onMouseLeave: func};
 

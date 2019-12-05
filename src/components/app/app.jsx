@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
-import Login from "../../components/login/login";
+import UserPage from "../user-page/user-page";
 import {connect} from 'react-redux';
 import ActionCreator from "../../reducers/action-creator/action-creator";
 import getFilteredMovies from "../../selectors/selector";
 import ErrorBoundary from "./../error";
 import {Switch, Route} from "react-router-dom";
 import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
+import MovieCardFull from "../movie-card-full/movie-card-full";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -22,8 +23,14 @@ class App extends React.PureComponent {
       </ErrorBoundary>}/>
       <Route path="/login" exact render={() =>
         <ErrorBoundary>
-          <Login submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>
+          <UserPage submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>
         </ErrorBoundary>}/>
+
+      <Route path="/films/:id" exact render={(props) =>
+        <ErrorBoundary>
+          <MovieCardFull {... [props, this.props]} films={films}/>
+        </ErrorBoundary>}/>
+      <Route render={()=><h1>404<br/><small>Page not found.</small></h1>}/>
     </Switch>;
   }
 }
@@ -45,7 +52,6 @@ auth: PropTypes.shape({})};
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
-    genre: state.activeItem,
     films: getFilteredMovies(state),
     genres: state.data.genres || [`All genres`],
     isAuthorizationRequired: state.user.isAuthorizationRequired,

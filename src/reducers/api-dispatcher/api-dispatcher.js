@@ -11,8 +11,9 @@ const apiDispatcher = {
   },
   checkAuth: () => (dispatch) => {
     return api.get(`/login`)
-      .then(() => {
+      .then(({data}) => {
         dispatch(ActionCreator.requireAuthorization(true));
+        dispatch(ActionCreator.auth(data));
       });
   },
   login: (email, password) => (dispatch) => {
