@@ -33,10 +33,9 @@ export default class MovieCard extends PureComponent {
 
   render() {
     const {movie, onMouseEnter, onMouseLeave} = this.props;
-    const {previewImage, name, videoLink, id} = movie;
+    const {previewImage, name, previewVideoLink, id} = movie;
     return <article
       className="small-movie-card catalog__movies-card"
-
       onMouseEnter={() => {
         onMouseEnter(); this._handleMovieEnter();
       }}
@@ -47,7 +46,7 @@ export default class MovieCard extends PureComponent {
     >
       <div className="small-movie-card__image">
         <VideoPlayer
-          src={videoLink}
+          src={previewVideoLink}
           poster={previewImage}
           muted={true}
           width={280}
@@ -56,7 +55,7 @@ export default class MovieCard extends PureComponent {
         />
       </div>
       <h3 className="small-movie-card__title">
-        <Link to ={`films/${id}`} className="small-movie-card__link" href="movie-page.html">
+        <Link to ={`/films/${id}`} className="small-movie-card__link">
           {name}
         </Link>
       </h3>

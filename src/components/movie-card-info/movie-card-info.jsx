@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MovieHeader from "../movie-page-header/movie-page-header";
-import MovieCardDesc, {MovieCardDescSmall} from "../movie-card-desc/movie-card-desc";
+import MovieCardDescSmall from "../movie-card-desc-small/movie-card-desc-small";
+
 
 const MovieCardInfo = (props) =>
   props.movie ?
     <React.Fragment>
-      <div className="movie-card__bg">
+      <div className="movie-card__bg" style={{backgroundColor: props.movie.backgroundColor}}>
         <img
           src={props.movie.backgroundImage}
           alt={`Background ${props.movie.name}`}
@@ -14,21 +15,19 @@ const MovieCardInfo = (props) =>
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <MovieHeader auth={props.auth} ></MovieHeader>
-
-      <div className={`movie-card__wrap${props.review ? `movie-card__translate-top` : ``}`}>
+      <div className={`movie-card__wrap`}>
         <div className="movie-card__info">
-          <div className="movie-card__poster">
+          {props.review ? <MovieCardDescSmall {...props}/> : <React.Fragment/>}
+          {!props.review ? <div className={`movie-card__poster`}>
             <img
               src={props.movie.posterImage}
               alt={`${props.movie.name} poster`}
               width="218"
               height="327"
             />
-          </div>
-          <MovieCardDescSmall {...props}/>
+          </div> : <React.Fragment/>}
+          {!props.review ? <MovieCardDescSmall {...props}/> : <React.Fragment/>}
         </div>
-        {props.review ? <MovieCardDesc {...props} /> : <div/>}
-
       </div>
     </React.Fragment>
     : <React.Fragment/>;

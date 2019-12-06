@@ -9,6 +9,7 @@ import ErrorBoundary from "./../error";
 import {Switch, Route} from "react-router-dom";
 import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 import MovieCardFull from "../movie-card-full/movie-card-full";
+import NotFound from "../not-found/not-found";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -25,12 +26,11 @@ class App extends React.PureComponent {
         <ErrorBoundary>
           <UserPage submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>
         </ErrorBoundary>}/>
-
       <Route path="/films/:id" exact render={(props) =>
         <ErrorBoundary>
-          <MovieCardFull {... [props, this.props]} films={films}/>
+          <MovieCardFull {...props} films={films} auth={auth} />
         </ErrorBoundary>}/>
-      <Route render={()=><h1>404<br/><small>Page not found.</small></h1>}/>
+      <Route component = {NotFound}/>
     </Switch>;
   }
 }

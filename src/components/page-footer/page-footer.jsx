@@ -10,7 +10,7 @@ const PageFooter = () => <footer className="page-footer">
   </div>
 
   <div className="copyright">
-    <p>© 2019 What to watch Ltd.</p>
+    <p>&copy; 2019 What to watch Ltd.</p>
   </div>
 </footer>;
 

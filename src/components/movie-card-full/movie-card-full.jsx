@@ -1,26 +1,48 @@
 import React from "react";
 import {PropTypes} from "prop-types";
 import {Redirect} from "react-router-dom";
-import MovieHeader from "../movie-page-header/movie-page-header";
-import {API_URL} from "../../api";
 import MovieCardInfo from "../movie-card-info/movie-card-info";
+import MoviesList from "../movies-list/movies-list";
+import PageFooter from "../page-footer/page-footer";
+import MovieCardDesc from "../movie-card-desc/movie-card-desc";
 
 const MovieCardFull = (props) => {
-  const {auth, films, match} = props;
-  const movie = films.find((film) => film.id === 2);
-  console.log(movie);
-  const {name, posterImage, genre, year} = movie;
+  const {films, match} = props;
+  const movie = films.find(({id}) => id === Number(match.params.id));
+  console.log(props);
   return movie ? <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <MovieCardInfo {... props} movie={movie} review={true} ></MovieCardInfo>
       </div>
+      <div className="movie-card__wrap movie-card__translate-top">
+        <div className="movie-card__info">
+          <div className="movie-card__poster movie-card__poster--big">
+            <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
+          </div>
+          <MovieCardDesc {... props} movie={movie} />
+        </div>
+      </div>
     </section>
+    <div className="page-content">
+      <section className="catalog catalog--like-this">
+        <h2 className="catalog__title">More like this</h2>
+        <MoviesList movies = {films.filter(({genre})=> genre === movie.genre)} onHeaderClick={()=>({})}/>
+      </section>
+      <PageFooter/>
+    </div>
   </React.Fragment> : <Redirect to={`/`}></Redirect>;
 };
 
 MovieCardFull.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({name: PropTypes.string})),
-  auth: PropTypes.shape({})};
+  films: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string
+  })),
+  auth: PropTypes.shape({}),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  })};
 
 export default MovieCardFull;
