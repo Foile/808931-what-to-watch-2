@@ -1,5 +1,5 @@
 import React from "react";
-import {string, shape, number, bool, arrayOf} from "prop-types";
+import {string, shape, number, arrayOf, bool} from "prop-types";
 import {Link} from "react-router-dom";
 
 const formatTime = (minutes) => `${minutes} m`;
@@ -53,6 +53,7 @@ MovieCardDesc.propTypes = {review: bool,
   movie: shape({
     name: string,
     genre: string,
+    director: string,
     released: number,
     posterImage: string,
     backgroundImage: string,
@@ -60,8 +61,10 @@ MovieCardDesc.propTypes = {review: bool,
     starring: arrayOf(string)
   }),
   match: shape({
-    params: {
+    params: shape({
       nav: string
-    }})};
+    })
+  })
+};
 
 export default MovieCardDesc;
