@@ -5,8 +5,8 @@ import {BrowserRouter} from "react-router-dom";
 
 it(`App correctly renders after relaunch`, () => {
   const movies = [
-    {id: 1, name: `Macbeth`, previewImage: ``, videoLink: ``},
-    {id: 2, name: `Aviator`, previewImage: ``, videoLink: ``}
+    {id: 1, name: `Macbeth`, previewImage: ``, previewVideoLink: ``, genre: `Comedy`},
+    {id: 2, name: `Aviator`, previewImage: ``, previewVideoLink: ``, genre: `Comedy`}
   ];
   const tree = renderer
   .create(<BrowserRouter>

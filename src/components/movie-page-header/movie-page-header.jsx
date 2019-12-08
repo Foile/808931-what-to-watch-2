@@ -1,5 +1,5 @@
 import React from "react";
-import {PropTypes} from "prop-types";
+import {shape, string} from "prop-types";
 import {Link} from "react-router-dom";
 import {API_URL} from "../../api";
 
@@ -28,6 +28,9 @@ const MovieHeader = (props) => {
   </header>;
 };
 
-MovieHeader.propTypes = {auth: PropTypes.shape({name: PropTypes.string, avatarUrl: PropTypes.string})};
+MovieHeader.propTypes = {auth: shape({
+  name: string,
+  avatarUrl: string
+})};
 
 export default MovieHeader;

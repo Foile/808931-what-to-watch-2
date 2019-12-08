@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {string, number, bool, shape} from "prop-types";
 import MovieHeader from "../movie-page-header/movie-page-header";
 import MovieCardDescSmall from "../movie-card-desc-small/movie-card-desc-small";
 
@@ -33,14 +33,15 @@ const MovieCardInfo = (props) =>
     : <React.Fragment/>;
 
 MovieCardInfo.propTypes = {
-  auth: PropTypes.shape({}),
-  review: PropTypes.bool,
-  movie: PropTypes.shape({
-    name: PropTypes.string,
-    genre: PropTypes.string,
-    released: PropTypes.number,
-    posterImage: PropTypes.string,
-    backgroundImage: PropTypes.string
+  auth: shape({}),
+  review: bool,
+  movie: shape({
+    name: string,
+    genre: string,
+    released: number,
+    posterImage: string,
+    backgroundImage: string,
+    backgroundColor: string
   })};
 
 export default MovieCardInfo;

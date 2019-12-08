@@ -30,6 +30,10 @@ class App extends React.PureComponent {
         <ErrorBoundary>
           <MovieCardFull {...props} films={films} auth={auth} />
         </ErrorBoundary>}/>
+      <Route path="/films/:id/:nav" exact render={(props) =>
+        <ErrorBoundary>
+          <MovieCardFull {...props} films={films} auth={auth} />
+        </ErrorBoundary>}/>
       <Route component = {NotFound}/>
     </Switch>;
   }

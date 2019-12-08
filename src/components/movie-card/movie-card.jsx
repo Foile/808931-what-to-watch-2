@@ -43,22 +43,21 @@ export default class MovieCard extends PureComponent {
         onMouseLeave();
         this._handleMovieLeave();
       }}
-    >
-      <div className="small-movie-card__image">
-        <VideoPlayer
-          src={previewVideoLink}
-          poster={previewImage}
-          muted={true}
-          width={280}
-          height={175}
-          playerState={this.state}
-        />
-      </div>
-      <h3 className="small-movie-card__title">
-        <Link to ={`/films/${id}`} className="small-movie-card__link">
+    ><Link to ={`/films/${id}`} className="small-movie-card__link">
+        <div className="small-movie-card__image">
+          <VideoPlayer
+            src={previewVideoLink}
+            poster={previewImage}
+            muted={true}
+            width={280}
+            height={175}
+            playerState={this.state}
+          />
+        </div>
+        <h3 className="small-movie-card__title">
           {name}
-        </Link>
-      </h3>
+        </h3>
+      </Link>
     </article>;
   }
 }

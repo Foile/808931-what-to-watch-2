@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-const GenresList = ({genres, onGenreClick, activeItem = -1, onChangeActiveItem = ()=>({})}) =>
+const GenresList = ({genres, onGenreClick, activeItem, onChangeActiveItem = ()=>({})}) =>
   (<ul className="catalog__genres-list">
     { genres.map((genre, i)=>
       (<li className={`catalog__genres-item ${activeItem === i ? `catalog__genres-item--active` : ``}`}

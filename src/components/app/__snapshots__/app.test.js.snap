@@ -7,10 +7,14 @@ Array [
   >
     <div
       className="movie-card__bg"
+      style={
+        Object {
+          "backgroundColor": undefined,
+        }
+      }
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Background Mask"
       />
     </div>
     <h1
@@ -65,9 +69,8 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Mask poster"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -77,7 +80,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            Mask
           </h2>
           <p
             className="movie-card__meta"
@@ -85,13 +88,11 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Comedy
             </span>
             <span
               className="movie-card__year"
-            >
-              2014
-            </span>
+            />
           </p>
           <div
             className="movie-card__buttons"
@@ -132,6 +133,7 @@ Array [
                 My list
               </span>
             </button>
+            
           </div>
         </div>
       </div>
@@ -179,30 +181,30 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            className="small-movie-card__link"
+            href="/films/1"
+            onClick={[Function]}
           >
-            <video
-              height={175}
-              poster=""
-              src=""
-              width={280}
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                height={175}
+                poster=""
+                src=""
+                width={280}
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
             >
               Mask
-            </a>
-          </h3>
+            </h3>
+          </a>
         </article>
       </div>
       <div

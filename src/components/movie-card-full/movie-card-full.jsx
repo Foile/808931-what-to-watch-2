@@ -1,5 +1,5 @@
 import React from "react";
-import {PropTypes} from "prop-types";
+import {string, shape, arrayOf, number} from "prop-types";
 import {Redirect} from "react-router-dom";
 import MovieCardInfo from "../movie-card-info/movie-card-info";
 import MoviesList from "../movies-list/movies-list";
@@ -9,7 +9,6 @@ import MovieCardDesc from "../movie-card-desc/movie-card-desc";
 const MovieCardFull = (props) => {
   const {films, match} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
-  console.log(props);
   return movie ? <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -35,13 +34,14 @@ const MovieCardFull = (props) => {
 };
 
 MovieCardFull.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string
+  films: arrayOf(shape({
+    name: string.isRequired,
+    genre: string.isRequired,
+    posterImage: string
   })),
-  auth: PropTypes.shape({}),
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string
+  match: shape({
+    params: shape({
+      id: number.isRequired
     })
   })};
 

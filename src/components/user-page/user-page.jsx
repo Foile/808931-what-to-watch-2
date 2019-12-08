@@ -1,6 +1,6 @@
 
 import React from "react";
-import PropTypes from "prop-types";
+import {bool, func} from "prop-types";
 import Login from "../login/login";
 import PageFooter from "../page-footer/page-footer";
 
@@ -22,8 +22,9 @@ const UserPage = (props) =>
     <PageFooter/>
   </div>;
 
-UserPage.propTypes = {submitHandler: PropTypes.func.isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired
+UserPage.propTypes = {
+  submitHandler: func.isRequired,
+  isAuthorizationRequired: bool.isRequired
 };
 
 export default UserPage;

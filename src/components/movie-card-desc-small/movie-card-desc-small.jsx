@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {string, shape, number, bool} from "prop-types";
 import {Link} from "react-router-dom";
 
 const MovieCardDescSmall = (props) => <div className="movie-card__desc">
@@ -32,18 +32,19 @@ const MovieCardDescSmall = (props) => <div className="movie-card__desc">
       </svg>
       <span>My list</span>
     </button>
-    {props.review ? <Link to={`/review`} href="add-review.html" className="btn movie-card__button">Add review</Link> : ``}
+    {props.review ? <Link to={`/films/${props.movie.id}/review`} className="btn movie-card__button">Add review</Link> : ``}
   </div>
 </div>;
 
-MovieCardDescSmall.propTypes = {review: PropTypes.bool,
-  movie: PropTypes.shape({
-    name: PropTypes.string,
-    genre: PropTypes.string,
-    released: PropTypes.number,
-    posterImage: PropTypes.string,
-    backgroundImage: PropTypes.string
-  })};
+MovieCardDescSmall.propTypes = {review: bool,
+  movie: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    genre: string.isRequired,
+    released: number,
+    posterImage: string,
+    backgroundImage: string
+  }).isRequired};
 
 
 export default MovieCardDescSmall;

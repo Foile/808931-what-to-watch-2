@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 it(`App correctly renders after relaunch`, () => {
   const tree = renderer
   .create(<BrowserRouter><App
-    films={[{genre: `Comedy`, name: `Mask`, videoLink: ``, previewImage: ``}]}
+    films={[{id: 1, genre: `Comedy`, name: `Mask`, previewVideoLink: ``, previewImage: ``}]}
     onChangeGenre={jest.fn()}
     onGetMovies={jest.fn()}
     genres={[`All genres`, `Comedy`]}/>
