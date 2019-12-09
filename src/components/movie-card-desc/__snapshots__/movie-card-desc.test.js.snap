@@ -46,78 +46,45 @@ exports[`MovieCardDesc correctly renders after relaunch 1`] = `
     </ul>
   </nav>
   <div
-    className="movie-card__text movie-card__row"
+    className="movie-rating"
   >
     <div
-      className="movie-card__text-col"
+      className="movie-rating__score"
+    />
+    <p
+      className="movie-rating__meta"
     >
-      <p
-        className="movie-card__details-item"
+      <span
+        className="movie-rating__level"
       >
-        <strong
-          className="movie-card__details-name"
-        >
-          Director
-        </strong>
-        <span
-          className="movie-card__details-value"
-        />
-      </p>
-      <p
-        className="movie-card__details-item"
+        Bad
+      </span>
+      <span
+        className="movie-rating__count"
       >
-        <strong
-          className="movie-card__details-name"
-        >
-          Starring
-        </strong>
-        <span
-          className="movie-card__details-value"
-        />
-      </p>
-    </div>
-    <div
-      className="movie-card__text-col"
+         ratings
+      </span>
+    </p>
+  </div>
+  <div
+    className="movie-card__text"
+  >
+    <p
+      className="movie-card__director"
     >
-      <p
-        className="movie-card__details-item"
-      >
-        <strong
-          className="movie-card__details-name"
-        >
-          Run Time
-        </strong>
-        <span
-          className="movie-card__details-value"
-        >
-          undefined m
-        </span>
-      </p>
-      <p
-        className="movie-card__details-item"
-      >
-        <strong
-          className="movie-card__details-name"
-        >
-          Genre
-        </strong>
-        <span
-          className="movie-card__details-value"
-        />
-      </p>
-      <p
-        className="movie-card__details-item"
-      >
-        <strong
-          className="movie-card__details-name"
-        >
-          Released
-        </strong>
-        <span
-          className="movie-card__details-value"
-        />
-      </p>
-    </div>
+      <strong>
+        Director: 
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: 
+        
+         and other
+      </strong>
+    </p>
   </div>
 </div>
 `;

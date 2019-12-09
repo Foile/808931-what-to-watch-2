@@ -7,14 +7,9 @@ Array [
   >
     <div
       className="movie-card__bg"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
     >
       <img
-        alt="Background Macbeth"
+        alt="background Macbeth"
       />
     </div>
     <h1
@@ -30,6 +25,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

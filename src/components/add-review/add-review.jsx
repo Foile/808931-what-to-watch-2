@@ -1,12 +1,12 @@
 import React from "react";
-import {Redirect, Link} from "react-router-dom";
+import {Redirect} from "react-router-dom";
+import {string, number, func, bool, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import MovieHeader from "../movie-page-header/movie-page-header";
 
 const AddReview = (props) => {
   const {submitHandler, isAuthorizationRequired, films, match, onChangeActiveItem, activeItem, auth} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
-  console.log(props);
   return isAuthorizationRequired === false ? <Redirect to="/login"></Redirect> :
     <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
       <div className="movie-card__header">
@@ -59,5 +59,29 @@ const AddReview = (props) => {
     </section>;
 };
 
+
+AddReview.propTypes = {isAuthorizationRequired: bool,
+  activeItem: number,
+  auth: shape({}),
+  films: arrayOf(shape({
+  })),
+  movie: shape({
+    name: string,
+    genre: string,
+    director: string,
+    released: number,
+    posterImage: string,
+    backgroundImage: string,
+    runTime: number,
+    starring: arrayOf(string)
+  }),
+  submitHandler: func,
+  onChangeActiveItem: func,
+  match: shape({
+    params: shape({
+      id: string
+    })
+  })
+};
 export {AddReview};
 export default withActiveItem(AddReview);

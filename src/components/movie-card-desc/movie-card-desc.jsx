@@ -21,7 +21,6 @@ const ratingDesc = (rating) => {
 const formatDate = (date) => date.format(`yyyy-mm-dd`);
 
 const tabSwitch = (nav = `overview`, movie) => {
-  console.log(movie);
   switch (nav) {
     case `details`:
       return <div className="movie-card__text movie-card__row">
@@ -55,7 +54,7 @@ const tabSwitch = (nav = `overview`, movie) => {
     case `reviews`: return <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
         {movie.comments ? movie.comments.map((comment) =>
-          <div className="review" key={`movie-${movie.id}comment-${comment.id}`}>
+          <div className="review" key={`movie-${movie.id}-comment-${comment.id}`}>
             <blockquote className="review__quote">
               <p className="review__text">{comment.text}</p>
               <footer className="review__details">
@@ -63,8 +62,7 @@ const tabSwitch = (nav = `overview`, movie) => {
                 <time className="review__date" dateTime={`${comment.date}`}>{formatDate(comment.date)}</time>
               </footer>
             </blockquote>
-
-            <div className="review__rating">8,9</div>
+            <div className="review__rating">comment.rating</div>
           </div>
         ) : <React.Fragment/>}
       </div>

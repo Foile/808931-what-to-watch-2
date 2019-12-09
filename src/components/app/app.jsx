@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import {string, bool, func, shape, arrayOf} from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
 import UserPage from "../user-page/user-page";
 import {connect} from 'react-redux';
@@ -45,21 +45,22 @@ class App extends React.PureComponent {
   }
 }
 
-App.propTypes = {films: PropTypes.arrayOf(
-    PropTypes.shape({
-      genre: PropTypes.string,
-      name: PropTypes.string,
-      previewImage: PropTypes.string,
-      videoLink: PropTypes.string
+App.propTypes = {films: arrayOf(
+    shape({
+      genre: string,
+      name: string,
+      previewImage: string,
+      videoLink: string
     })
 ).isRequired,
-onChangeGenre: PropTypes.func.isRequired,
-onGetMovies: PropTypes.func.isRequired,
-genres: PropTypes.arrayOf(PropTypes.string),
-submitHandler: PropTypes.func,
-isAuthorizationRequired: PropTypes.bool,
-auth: PropTypes.shape({}),
-addComment: PropTypes.func
+onChangeGenre: func.isRequired,
+onGetMovies: func.isRequired,
+genres: arrayOf(string),
+submitHandler: func,
+isAuthorizationRequired: bool,
+auth: shape({}),
+addComment: func,
+loadMore: func
 };
 
 const mapStateToProps = (state, ownProps) => {
