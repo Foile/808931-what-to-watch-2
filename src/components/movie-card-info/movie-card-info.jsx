@@ -7,7 +7,7 @@ import MovieCardDescSmall from "../movie-card-desc-small/movie-card-desc-small";
 const MovieCardInfo = (props) =>
   props.movie ?
     <React.Fragment>
-      <div className="movie-card__bg" style={{backgroundColor: props.movie.backgroundColor}}>
+      <div className="movie-card__bg">
         <img
           src={props.movie.backgroundImage}
           alt={`Background ${props.movie.name}`}

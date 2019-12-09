@@ -1,5 +1,5 @@
 import React from "react";
-import {string, shape, arrayOf, number} from "prop-types";
+import {string, shape, arrayOf} from "prop-types";
 import {Redirect} from "react-router-dom";
 import MovieCardInfo from "../movie-card-info/movie-card-info";
 import MoviesList from "../movies-list/movies-list";
@@ -10,7 +10,7 @@ const MovieCardFull = (props) => {
   const {films, match} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
   return movie ? <React.Fragment>
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
       <div className="movie-card__hero">
         <MovieCardInfo {... props} movie={movie} review={true} ></MovieCardInfo>
       </div>
@@ -41,7 +41,7 @@ MovieCardFull.propTypes = {
   })),
   match: shape({
     params: shape({
-      id: number.isRequired
+      id: string.isRequired
     })
   })};
 
