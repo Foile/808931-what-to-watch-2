@@ -11,7 +11,8 @@ export default class MainScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onChangeGenre, genres, auth} = this.props;
+    const {movies, onChangeGenre, genres, auth, onLoadMore} = this.props;
+    console.log(this.props);
     return (
       <React.Fragment>
         <section className="movie-card">
@@ -23,7 +24,7 @@ export default class MainScreen extends PureComponent {
             <GenresList genres = {genres} onGenreClick={onChangeGenre}/>
             <MoviesList movies = {movies} onHeaderClick={()=>({})}/>
             <div className="catalog__more">
-              <button className="catalog__button" type="button">
+              <button className="catalog__button" type="button" onClick={onLoadMore}>
               Show more
               </button>
             </div>

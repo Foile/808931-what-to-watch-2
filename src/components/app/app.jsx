@@ -4,7 +4,7 @@ import MainScreen from '../main-screen/main-screen';
 import UserPage from "../user-page/user-page";
 import {connect} from 'react-redux';
 import ActionCreator from "../../reducers/action-creator/action-creator";
-import getFilteredMovies from "../../selectors/selector";
+import getLimitFilteredFilms from "../../selectors/selector";
 import ErrorBoundary from "./../error";
 import {Switch, Route} from "react-router-dom";
 import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
@@ -18,11 +18,11 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment} = this.props;
+    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore} = this.props;
     return <Switch>
       <Route path="/" exact render={() =>
         <ErrorBoundary>
-          <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} genres={genres} auth={auth} />
+          <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} />
         </ErrorBoundary>}/>
       <Route path="/login" exact render={() =>
         <ErrorBoundary>
@@ -64,11 +64,11 @@ addComment: PropTypes.func
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
-    films: getFilteredMovies(state),
+    films: getLimitFilteredFilms(state),
     genres: state.data.genres || [`All genres`],
     isAuthorizationRequired: state.user.isAuthorizationRequired,
     auth: state.user.auth,
-
+    limit: state.user.limit
   });
   return res;
 };
@@ -80,6 +80,7 @@ const mapDispatchToProps = (dispatch) => ({
   onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies)),
   submitHandler: (email, password) => dispatch(apiDispatcher.login(email, password)),
   addComment: (movieId, rating, text) => dispatch(apiDispatcher.addComment(movieId, rating, text)),
+  loadMore: () => dispatch(ActionCreator.loadMore(20)),
 });
 
 export {App};
