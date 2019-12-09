@@ -9,19 +9,24 @@ const apiDispatcher = {
         dispatch(ActionCreator.getGenres(response.data));
       });
   },
+  loadPromoFilm: () => (dispatch) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        dispatch(ActionCreator.getPromo(response.data));
+      });
+  },
   loadFilmComments: (id) => (dispatch) => {
     return api.get(`/comments/${id}`)
     .then(({data}) => {
       dispatch(ActionCreator.updateComments(id, data));
     });
   },
-  addCommet: (filmId, rating, comment) => (dispatch) => {
+  addComment: (filmId, rating, comment) => (dispatch) => {
     return api.post(`/comments/${filmId}`, {rating, comment})
     .then(({data}) => {
       dispatch(ActionCreator.updateComments(filmId, data));
     }
     );
-
   },
   checkAuth: () => (dispatch) => {
     return api.get(`/login`)

@@ -5,7 +5,9 @@ export const ActionType = {
   GET_GENRES: `GET_GENRES`,
   REQUIRE_AUTH: `REQUIRE_AUTH`,
   LOGIN: `LOGIN`,
-  AUTH: `AUTH`
+  AUTH: `AUTH`,
+  UPDATE_COMMENTS: `UPDATE_COMMENTS`
+
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
@@ -30,7 +32,8 @@ const ActionCreator = {
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
   requireAuthorization: (isRequired) => ({type: ActionType.REQUIRE_AUTH, payload: isRequired}),
   login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}}),
-  auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)})
+  auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)}),
+  updateComments: (filmId, comments) => ({type: ActionType.UPDATE_COMMENTS, payload: {filmId, comments: convertData(comments)}})
 };
 
 export default ActionCreator;

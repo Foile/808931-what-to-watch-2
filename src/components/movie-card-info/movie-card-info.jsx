@@ -10,7 +10,7 @@ const MovieCardInfo = (props) =>
       <div className="movie-card__bg">
         <img
           src={props.movie.backgroundImage}
-          alt={`Background ${props.movie.name}`}
+          alt={`background ${props.movie.name}`}
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>

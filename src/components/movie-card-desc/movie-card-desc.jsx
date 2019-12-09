@@ -2,7 +2,7 @@ import React from "react";
 import {string, shape, number, arrayOf, bool} from "prop-types";
 import {Link} from "react-router-dom";
 
-const formatTime = (minutes) => `${minutes} m`;
+const formatTime = (minutes) => `${Math.floor(minutes / 60) > 0 ? `${Math.floor(minutes / 60)} h ` : ``}${minutes % 60} m`;
 const ratingDesc = (rating) => {
   if (rating === 10) {
     return `Awesome`;
@@ -18,7 +18,7 @@ const ratingDesc = (rating) => {
   }
   return `Bad`;
 };
-const formatDate = (date) => date;
+const formatDate = (date) => date.format(`yyyy-mm-dd`);
 
 const tabSwitch = (nav = `overview`, movie) => {
   console.log(movie);
