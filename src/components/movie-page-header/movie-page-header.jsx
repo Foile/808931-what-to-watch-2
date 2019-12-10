@@ -1,5 +1,5 @@
 import React from "react";
-import {shape, string} from "prop-types";
+import {shape, string, number} from "prop-types";
 import {Link, BrowserRouter} from "react-router-dom";
 import {API_URL} from "../../api";
 import Logo from "../logo/logo";
@@ -37,6 +37,6 @@ MovieHeader.propTypes = {auth: shape({
   name: string,
   avatarUrl: string
 }),
-movie: shape({id: string, name: string})};
+movie: shape({id: number, name: string})};
 
 export default MovieHeader;
