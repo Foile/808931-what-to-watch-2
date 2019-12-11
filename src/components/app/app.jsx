@@ -19,11 +19,20 @@ class App extends React.PureComponent {
   }
 
   render() {
+<<<<<<< HEAD
     const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, isLoadMoreVisible} = this.props;
     return <Switch>
       <Route path="/" exact render={() =>
         <ErrorBoundary>
           <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} isLoadMoreVisible = {isLoadMoreVisible}/>
+=======
+    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, promo} = this.props;
+    console.log(this.props)
+    return <Switch>
+      <Route path="/" exact render={() =>
+        <ErrorBoundary>
+          <MainScreen promo={promo} movies={films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} />
+>>>>>>> 88a6b569c2520b48a67f9e27593f4cf47b11ea45
         </ErrorBoundary>}/>
       <Route path="/login" exact render={() =>
         <ErrorBoundary>
@@ -74,7 +83,8 @@ const mapStateToProps = (state, ownProps) => {
     isAuthorizationRequired: state.user.isAuthorizationRequired,
     auth: state.user.auth,
     limit: state.user.limit,
-    isLoadMoreVisible: state.data.allFilms ? state.user.limit < state.data.allFilms.length : true
+    isLoadMoreVisible: state.data.allFilms ? state.user.limit < state.data.allFilms.length : true,
+    promo: state.data.promo
   });
   return res;
 };

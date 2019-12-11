@@ -12,13 +12,11 @@ export default class MainScreen extends PureComponent {
   }
 
   render() {
-
-    const {movies, onChangeGenre, genres, auth, onLoadMore, isLoadMoreVisible} = this.props;
-    console.log(isLoadMoreVisible);
+    const {movies, onChangeGenre, genres, auth, onLoadMore, isLoadMoreVisible, promo} = this.props;
     return (
       <React.Fragment>
         <section className="movie-card">
-          <MovieCardInfo movie={movies[0]} auth={auth}></MovieCardInfo>
+          <MovieCardInfo movie={promo} auth={auth}></MovieCardInfo>
         </section>
         <div className="page-content">
           <section className="catalog">
@@ -35,6 +33,9 @@ export default class MainScreen extends PureComponent {
 }
 
 MainScreen.propTypes = {
+  promo: shape({
+    name: string
+  }),
   movies: arrayOf(shape({
     name: string
   })).isRequired,

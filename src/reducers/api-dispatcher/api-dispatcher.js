@@ -12,7 +12,7 @@ const apiDispatcher = {
   loadPromoFilm: () => (dispatch) => {
     return api.get(`/films/promo`)
       .then((response) => {
-        dispatch(ActionCreator.getPromo(response.data));
+        dispatch(ActionCreator.loadPromo(response.data));
       });
   },
   loadFilmComments: (id) => (dispatch) => {
