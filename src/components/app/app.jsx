@@ -19,6 +19,7 @@ class App extends React.PureComponent {
 
   render() {
     const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, promo} = this.props;
+    console.log(this.props)
     return <Switch>
       <Route path="/" exact render={() =>
         <ErrorBoundary>

@@ -12,7 +12,6 @@ export default class MainScreen extends PureComponent {
 
   render() {
     const {movies, onChangeGenre, genres, auth, onLoadMore, promo} = this.props;
-    console.log(promo);
     return (
       <React.Fragment>
         <section className="movie-card">
