@@ -1,5 +1,5 @@
 import React from "react";
-import {string, bool, func, shape, arrayOf} from 'prop-types';
+import {string, bool, func, shape, arrayOf, number} from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
 import UserPage from "../user-page/user-page";
 import {connect} from 'react-redux';
@@ -11,6 +11,7 @@ import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 import MovieCardFull from "../movie-card-full/movie-card-full";
 import NotFound from "../not-found/not-found";
 import AddReview from "../add-review/add-review";
+import Constants from "../../const";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -18,11 +19,11 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore} = this.props;
+    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, isLoadMoreVisible} = this.props;
     return <Switch>
       <Route path="/" exact render={() =>
         <ErrorBoundary>
-          <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} />
+          <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} isLoadMoreVisible = {isLoadMoreVisible}/>
         </ErrorBoundary>}/>
       <Route path="/login" exact render={() =>
         <ErrorBoundary>
@@ -60,16 +61,20 @@ submitHandler: func,
 isAuthorizationRequired: bool,
 auth: shape({}),
 addComment: func,
-loadMore: func
+loadMore: func,
+limit: number,
+isLoadMoreVisible: bool
 };
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state.data.allFilms, state.user.limit, ownProps.isLoadMoreVisible);
   const res = Object.assign({}, ownProps, {
     films: getLimitFilteredFilms(state),
-    genres: state.data.genres || [`All genres`],
+    genres: state.data.genres || [Constants.DEFAULT_GENRE],
     isAuthorizationRequired: state.user.isAuthorizationRequired,
     auth: state.user.auth,
-    limit: state.user.limit
+    limit: state.user.limit,
+    isLoadMoreVisible: state.data.allFilms ? state.user.limit < state.data.allFilms.length : true
   });
   return res;
 };
@@ -81,7 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
   onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies)),
   submitHandler: (email, password) => dispatch(apiDispatcher.login(email, password)),
   addComment: (movieId, rating, text) => dispatch(apiDispatcher.addComment(movieId, rating, text)),
-  loadMore: () => dispatch(ActionCreator.loadMore(20)),
+  loadMore: () => dispatch(ActionCreator.loadMore(Constants.FILMS_LIMIT_RATE)),
 });
 
 export {App};

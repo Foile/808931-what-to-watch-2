@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 
 const Login = (props) => {
+  console.log(`Login`);
   const {submitHandler, isAuthorizationRequired} = props;
   return isAuthorizationRequired === false ? <Redirect to="/"></Redirect>
     : <div className="sign-in user-page__content">

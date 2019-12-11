@@ -1,11 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components ShowMore renders correctly 1`] = `
-<button
-  className="catalog__button"
-  onClick={[MockFunction]}
-  type="button"
+<div
+  className="catalog__more"
 >
-  Show more
-</button>
+  <button
+    className="catalog__button"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    Show more
+  </button>
+</div>
 `;
