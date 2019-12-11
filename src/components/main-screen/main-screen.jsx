@@ -11,11 +11,12 @@ export default class MainScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onChangeGenre, genres, auth, onLoadMore} = this.props;
+    const {movies, onChangeGenre, genres, auth, onLoadMore, promo} = this.props;
+    console.log(promo);
     return (
       <React.Fragment>
         <section className="movie-card">
-          <MovieCardInfo movie={movies[0]} auth={auth}></MovieCardInfo>
+          <MovieCardInfo movie={promo} auth={auth}></MovieCardInfo>
         </section>
         <div className="page-content">
           <section className="catalog">

@@ -18,11 +18,11 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore} = this.props;
+    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, promo} = this.props;
     return <Switch>
       <Route path="/" exact render={() =>
         <ErrorBoundary>
-          <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} />
+          <MainScreen promo={promo} movies={films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} />
         </ErrorBoundary>}/>
       <Route path="/login" exact render={() =>
         <ErrorBoundary>
@@ -69,7 +69,8 @@ const mapStateToProps = (state, ownProps) => {
     genres: state.data.genres || [`All genres`],
     isAuthorizationRequired: state.user.isAuthorizationRequired,
     auth: state.user.auth,
-    limit: state.user.limit
+    limit: state.user.limit,
+    promo: state.data.promo
   });
   return res;
 };

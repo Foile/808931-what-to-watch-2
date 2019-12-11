@@ -7,7 +7,8 @@ export const ActionType = {
   LOGIN: `LOGIN`,
   AUTH: `AUTH`,
   UPDATE_COMMENTS: `UPDATE_COMMENTS`,
-  LOAD_MORE: `LOAD_MORE`
+  LOAD_MORE: `LOAD_MORE`,
+  LOAD_PROMO: `LOAD_PROMO`
 
 };
 
@@ -35,7 +36,8 @@ const ActionCreator = {
   login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}}),
   auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)}),
   updateComments: (filmId, comments) => ({type: ActionType.UPDATE_COMMENTS, payload: {filmId, comments: convertData(comments)}}),
-  loadMore: (limit) => ({type: ActionType.LOAD_MORE, payload: limit})
+  loadMore: (limit) => ({type: ActionType.LOAD_MORE, payload: limit}),
+  loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)})
 };
 
 export default ActionCreator;
