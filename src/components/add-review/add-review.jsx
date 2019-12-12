@@ -4,6 +4,7 @@ import {string, number, func, bool, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import MovieHeader from "../movie-page-header/movie-page-header";
 import history from "../../reducers/history";
+import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher"
 import {connect} from 'react-redux';
 
 function increaseBrightness(hex, percent) {
@@ -21,7 +22,7 @@ function increaseBrightness(hex, percent) {
 }
 
 const AddReview = (props) => {
-  const {submitHandler, films, match, onChangeActiveItem, activeItem, auth} = props;
+  const {addComment, films, match, onChangeActiveItem, activeItem, auth} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
   if (!movie) {
     return  history.push(`/`);
@@ -47,7 +48,7 @@ const AddReview = (props) => {
           evt.preventDefault();
           const rating = activeItem;
           const comment = evt.target.querySelector(`#review-text`).value;
-          submitHandler(match.params.id, rating, comment);
+          addComment(match.params.id, rating, comment);
         }
       }>
         <div className="rating">
