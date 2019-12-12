@@ -4,7 +4,7 @@ import {string, number, func, bool, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import MovieHeader from "../movie-page-header/movie-page-header";
 import history from "../../reducers/history";
-import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher"
+import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 import {connect} from 'react-redux';
 
 function increaseBrightness(hex, percent) {
