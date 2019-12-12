@@ -6,21 +6,22 @@ import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
 import MovieCardDesc from "../movie-card-desc/movie-card-desc";
 import {connect} from 'react-redux';
-import Constants from "../../const"
+import Constants from "../../const";
+import ActionCreator from "../../reducers/action-creator/action-creator";
 
 const MovieCardFull = (props) => {
-  const {films, movie} = props;
+  const {films, movie, auth, comments} = props;
   return <React.Fragment>
     <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
       <div className="movie-card__hero">
-        <MovieCardInfo {... props} movie={movie} review={true} ></MovieCardInfo>
+        <MovieCardInfo {... props} movie={movie} review={true} auth={auth}></MovieCardInfo>
       </div>
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
             <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
           </div>
-          <MovieCardDesc {... props} movie={movie} />
+          <MovieCardDesc {... props} movie={movie} comments={comments}/>
         </div>
       </div>
     </section>
@@ -46,21 +47,24 @@ MovieCardFull.propTypes = {
     })
   })};
 
-  MovieCardFull.defaultProps = {
-    films: []
-  };
+MovieCardFull.defaultProps = {
+  films: [],
+  comments: []
+};
 
-  const mapStateToProps = (state, ownProps) => {
-    const res = Object.assign({}, ownProps, {
-      films: state.data.allFilms,
-      movie: state.data.allFilms && state.data.allFilms.find(({id}) => id === Number(ownProps.match.params.id)),
-    });
-    return res;
-  };
-  
-  const mapDispatchToProps = (dispatch) => ({
-    onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies)),
+const mapStateToProps = (state, ownProps) => {
+  const res = Object.assign({}, ownProps, {
+    films: state.data.allFilms,
+    movie: state.data.allFilms && state.data.allFilms.find(({id}) => id === Number(ownProps.match.params.id)),
+    auth: state.user.auth,
+    comments: state.data.comments ? state.data.comments.filter(({filmId}) => filmId === Number(ownProps.match.id)) : [],
   });
-  
+  return res;
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies)),
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCardFull);

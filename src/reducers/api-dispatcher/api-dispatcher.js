@@ -1,6 +1,7 @@
 import ActionCreator from '../action-creator/action-creator';
 import {api} from "../../api";
 import {startLoading, stopLoading} from "react-redux-hoc-loader";
+import history from "../../history";
 
 const apiDispatcher = {
   loadFilms: () => (dispatch) => {
@@ -15,8 +16,8 @@ const apiDispatcher = {
   loadPromoFilm: () => (dispatch) => {
     dispatch(startLoading(`promo`));
     return api.get(`/films/promo`)
-      .then((response) => {
-        dispatch(ActionCreator.loadPromo(response.data));
+      .then(({data}) => {
+        dispatch(ActionCreator.loadPromo(data));
         dispatch(stopLoading(`promo`));
       });
   },
@@ -33,6 +34,7 @@ const apiDispatcher = {
     .then(({data}) => {
       dispatch(ActionCreator.updateComments(filmId, data));
       dispatch(stopLoading(`comments`));
+      history.push(`/films/${filmId}/reviews`);
     }
     );
   },

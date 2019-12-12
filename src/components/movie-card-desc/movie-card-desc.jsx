@@ -1,26 +1,14 @@
 import React from "react";
 import {string, shape, number, arrayOf, bool} from "prop-types";
 import {Link} from "react-router-dom";
+import Constant from "../../const";
 
 const formatTime = (minutes) => `${Math.floor(minutes / 60) > 0 ? `${Math.floor(minutes / 60)} h ` : ``}${minutes % 60} m`;
-const ratingDesc = (rating) => {
-  if (rating === 10) {
-    return `Awesome`;
-  }
-  if (rating > 8) {
-    return `Very good`;
-  }
-  if (rating > 5) {
-    return `Good`;
-  }
-  if (rating > 3) {
-    return `Normal`;
-  }
-  return `Bad`;
-};
+const ratingDesc = (rating) => Constant.USER_RATINGS.filter(({min}) => min <= rating).pop().title;
+
 const formatDate = (date) => date.format(`yyyy-mm-dd`);
 
-const tabSwitch = (nav = `overview`, movie) => {
+const tabSwitch = (nav = `overview`, movie, comments) => {
   switch (nav) {
     case `details`:
       return <div className="movie-card__text movie-card__row">
@@ -53,7 +41,7 @@ const tabSwitch = (nav = `overview`, movie) => {
       </div>;
     case `reviews`: return <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        {movie.comments ? movie.comments.map((comment) =>
+        {comments ? comments.map((comment) =>
           <div className="review" key={`movie-${movie.id}-comment-${comment.id}`}>
             <blockquote className="review__quote">
               <p className="review__text">{comment.text}</p>
@@ -85,7 +73,7 @@ const tabSwitch = (nav = `overview`, movie) => {
 };
 
 const MovieCardDesc = (props)=> {
-  const {movie, match} = props;
+  const {movie, match, comments} = props;
   return <div className="movie-card__desc">
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -98,7 +86,7 @@ const MovieCardDesc = (props)=> {
       </ul>
     </nav>
     {
-      tabSwitch(match.params.nav, movie)
+      tabSwitch(match.params.nav, movie, comments)
     }
   </div>
   ;

@@ -3,10 +3,11 @@ import {shape, string, number} from "prop-types";
 import {Link, BrowserRouter} from "react-router-dom";
 import {API_URL} from "../../api";
 import Logo from "../logo/logo";
+import UserBlock from "../user-block/user-block";
 
 const MovieHeader = (props) => {
   const {auth, movie} = props;
-  return <BrowserRouter>
+  return <React.Fragment>
     <header className="page-header movie-card__head">
       <Logo/>
       {movie ? <nav className="breadcrumbs">
@@ -19,19 +20,8 @@ const MovieHeader = (props) => {
           </li>
         </ul>
       </nav> : <React.Fragment/>}
-      <div className="user-block">
-        { auth ? <div className="user-block__avatar">
-        <Link to={`/mylist`}>
-          <img
-            src={`${API_URL}/${auth.avatarUrl}`}
-            alt={auth.name}
-            width="63"
-            height="63"
-          /></Link>
-        </div> :
-          <Link to="/login">Sign in</Link>}
-      </div>
-    </header></BrowserRouter>;
+      <UserBlock auth={auth}></UserBlock>
+    </header></React.Fragment>;
 };
 
 MovieHeader.propTypes = {auth: shape({

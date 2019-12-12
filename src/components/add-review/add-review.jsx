@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 import {string, number, func, bool, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import MovieHeader from "../movie-page-header/movie-page-header";
-import history from "../../reducers/history";
+import history from "../../history";
 import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 import {connect} from 'react-redux';
 
@@ -25,7 +25,7 @@ const AddReview = (props) => {
   const {addComment, films, match, onChangeActiveItem, activeItem, auth} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
   if (!movie) {
-    return  history.push(`/`);
+    return history.push(`/`);
   }
 
   return <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>

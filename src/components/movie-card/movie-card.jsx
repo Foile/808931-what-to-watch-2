@@ -43,7 +43,7 @@ export default class MovieCard extends PureComponent {
         onMouseLeave();
         this._handleMovieLeave();
       }}>
-        <Link to ={`/films/${id}`} className="small-movie-card__link">
+      <Link to ={`/films/${id}`} className="small-movie-card__link">
         <div className="small-movie-card__image">
           <VideoPlayer
             src={previewVideoLink}

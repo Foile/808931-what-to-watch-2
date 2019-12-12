@@ -16,7 +16,7 @@ import withAuth from "../../hocs/with-auth/with-auth";
 import MyList from "../my-list/my-list";
 import withLoaded from "../../hocs/with-loaded/with-loaded";
 import {Router} from "react-router-dom";
-import history from "../../reducers/history";
+import history from "../../history";
 
 class App extends React.PureComponent {
   constructor(props) {

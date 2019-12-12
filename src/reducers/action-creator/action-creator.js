@@ -16,6 +16,7 @@ const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(
 const snakeToCamel = (snakeString) => snakeString.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace(`-`, ``).replace(`_`, ``));
 
 const convertData = (origin) => {
+  console.log(origin);
   const newObject = {};
   Object.keys(origin).forEach((prop) =>{
     newObject[snakeToCamel(prop)] = origin[prop];
