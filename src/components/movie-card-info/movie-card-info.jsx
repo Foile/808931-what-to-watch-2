@@ -14,7 +14,7 @@ const MovieCardInfo = (props) =>
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <MovieHeader auth={props.auth} ></MovieHeader>
+      <MovieHeader auth={props.auth} isAuthorizationRequired={props.isAuthorizationRequired}></MovieHeader>
       <div className={`movie-card__wrap`}>
         <div className="movie-card__info">
           {props.review ? <MovieCardDescSmall {...props}/> : <React.Fragment/>}

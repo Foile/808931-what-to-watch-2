@@ -12,6 +12,9 @@ import MovieCardFull from "../movie-card-full/movie-card-full";
 import NotFound from "../not-found/not-found";
 import AddReview from "../add-review/add-review";
 import Constants from "../../const";
+import withAuth from "../../hocs/with-auth/with-auth";
+import MyList from "../my-list/my-list";
+import withLoaded from "../../hocs/with-loaded/with-loaded";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -19,25 +22,12 @@ class App extends React.PureComponent {
   }
 
   render() {
-<<<<<<< HEAD
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, isLoadMoreVisible} = this.props;
+    console.log(this.props);
+    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, isLoadMoreVisible, promo} = this.props;
     return <Switch>
-      <Route path="/" exact render={() =>
-        <ErrorBoundary>
-          <MainScreen movies = {films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} isLoadMoreVisible = {isLoadMoreVisible}/>
-=======
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, promo} = this.props;
-    console.log(this.props)
-    return <Switch>
-      <Route path="/" exact render={() =>
-        <ErrorBoundary>
-          <MainScreen promo={promo} movies={films} onChangeGenre={onChangeGenre} onGetMovies={onGetMovies} onLoadMore={loadMore} genres={genres} auth={auth} />
->>>>>>> 88a6b569c2520b48a67f9e27593f4cf47b11ea45
-        </ErrorBoundary>}/>
-      <Route path="/login" exact render={() =>
-        <ErrorBoundary>
-          <UserPage submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>
-        </ErrorBoundary>}/>
+      <Route path="/" component={MainScreen}/>
+      <Route path="/mylist" component={withAuth(MyList)} />
+      <Route path="/login" exact render={() => <UserPage submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>}/>
       <Route path="/films/:id" exact render={(props) =>
         <ErrorBoundary>
           <MovieCardFull {...props} films={films} auth={auth} />
@@ -55,28 +45,34 @@ class App extends React.PureComponent {
   }
 }
 
-App.propTypes = {films: arrayOf(
-    shape({
-      genre: string,
-      name: string,
-      previewImage: string,
-      videoLink: string
-    })
-).isRequired,
-onChangeGenre: func.isRequired,
-onGetMovies: func.isRequired,
-genres: arrayOf(string),
-submitHandler: func,
-isAuthorizationRequired: bool,
-auth: shape({}),
-addComment: func,
-loadMore: func,
-limit: number,
-isLoadMoreVisible: bool
+App.propTypes = {
+  promo: shape({
+    genre: string,
+    name: string,
+    previewImage: string,
+    videoLink: string
+  }),
+  films: arrayOf(
+      shape({
+        genre: string,
+        name: string,
+        previewImage: string,
+        videoLink: string
+      })
+  ).isRequired,
+  onChangeGenre: func.isRequired,
+  onGetMovies: func.isRequired,
+  genres: arrayOf(string),
+  submitHandler: func,
+  isAuthorizationRequired: bool,
+  auth: shape({}),
+  addComment: func,
+  loadMore: func,
+  limit: number,
+  isLoadMoreVisible: bool
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.data.allFilms, state.user.limit, ownProps.isLoadMoreVisible);
   const res = Object.assign({}, ownProps, {
     films: getLimitFilteredFilms(state),
     genres: state.data.genres || [Constants.DEFAULT_GENRE],
@@ -100,4 +96,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withLoaded(`movies`, `promo`)(connect(mapStateToProps, mapDispatchToProps)(App));
