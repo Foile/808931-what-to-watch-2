@@ -5,6 +5,7 @@ const initialState = {
 };
 
 const user = (state = initialState, action) => {
+  console.log(state, action)
   switch (action.type) {
     case ActionType.CHANGE_GENRE: return Object.assign({}, state, {genre: action.payload});
     case ActionType.REQUIRE_AUTH: return Object.assign({}, state, {isAuthorizationRequired: action.payload});

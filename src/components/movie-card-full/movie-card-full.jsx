@@ -5,11 +5,12 @@ import MovieCardInfo from "../movie-card-info/movie-card-info";
 import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
 import MovieCardDesc from "../movie-card-desc/movie-card-desc";
+import {connect} from 'react-redux';
+import Constants from "../../const"
 
 const MovieCardFull = (props) => {
-  const {films, match} = props;
-  const movie = films.find(({id}) => id === Number(match.params.id));
-  return movie ? <React.Fragment>
+  const {films, movie} = props;
+  return <React.Fragment>
     <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
       <div className="movie-card__hero">
         <MovieCardInfo {... props} movie={movie} review={true} ></MovieCardInfo>
@@ -30,7 +31,7 @@ const MovieCardFull = (props) => {
       </section>
       <PageFooter/>
     </div>
-  </React.Fragment> : <Redirect to={`/`}></Redirect>;
+  </React.Fragment>;
 };
 
 MovieCardFull.propTypes = {
@@ -45,4 +46,21 @@ MovieCardFull.propTypes = {
     })
   })};
 
-export default MovieCardFull;
+  MovieCardFull.defaultProps = {
+    films: []
+  };
+
+  const mapStateToProps = (state, ownProps) => {
+    const res = Object.assign({}, ownProps, {
+      films: state.data.allFilms,
+      movie: state.data.allFilms && state.data.allFilms.find(({id}) => id === Number(ownProps.match.params.id)),
+    });
+    return res;
+  };
+  
+  const mapDispatchToProps = (dispatch) => ({
+    onGetMovies: (movies) => dispatch(ActionCreator.getMovies(movies)),
+  });
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCardFull);

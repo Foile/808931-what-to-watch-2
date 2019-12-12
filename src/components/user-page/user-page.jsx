@@ -4,6 +4,8 @@ import {bool, func} from "prop-types";
 import Login from "../login/login";
 import PageFooter from "../page-footer/page-footer";
 import Logo from "../logo/logo";
+import {connect} from 'react-redux';
+import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher"
 
 const UserPage = (props) =>
   <div className="user-page">
@@ -22,4 +24,16 @@ UserPage.propTypes = {
   isAuthorizationRequired: bool.isRequired
 };
 
-export default UserPage;
+const mapStateToProps = (state, ownProps) => {
+  const res = Object.assign({}, ownProps, {
+    isAuthorizationRequired: state.user.isAuthorizationRequired,
+    auth: state.user.auth,
+  });
+  return res;
+};
+const mapDispatchToProps = (dispatch) => ({
+  submitHandler: (email, password) => dispatch(apiDispatcher.login(email, password)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

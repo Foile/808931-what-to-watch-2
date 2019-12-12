@@ -5,14 +5,13 @@ const withAuth = (Component) => {
   class WithAuth extends PureComponent {
     constructor(props) {
       super(props);
-
     }
 
     render() {
-      return this.state.isAuthorizationRequired ? <UserPage {...this.props}></UserPage>
-        : <Component
-          {...this.props}
-        />;
+      const {isAuthorizationRequired} = this.props;
+      return isAuthorizationRequired ? 
+      <UserPage {...this.props} />
+      : <Component {...this.props} />;
     }
   }
 

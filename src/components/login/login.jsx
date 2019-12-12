@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import history from "../../reducers/history"
 
 const Login = (props) => {
   const {submitHandler} = props;
@@ -10,6 +11,7 @@ const Login = (props) => {
         const email = evt.target.querySelector(`#user-email`).value;
         const password = evt.target.querySelector(`#user-password`).value;
         submitHandler(email, password);
+        history.push(`/`)
       }
     }>
       <div className="sign-in__fields">
@@ -32,5 +34,7 @@ const Login = (props) => {
 Login.propTypes = {
   submitHandler: PropTypes.func
 };
+
+
 
 export default Login;

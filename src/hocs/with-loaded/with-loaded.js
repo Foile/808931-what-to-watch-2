@@ -9,11 +9,11 @@ const computeLoaders = (loaders) => {
 };
 
 const withLoaded = (...loadersNames) => (Component) => {
+  console.log(loadersNames);
   const WithLoaded = (props) => {
     const {loaders} = props;
-
+    console.log(props);
     const isLoading = useMemo(() => computeLoaders(loaders), [loaders]);
-
     if (isLoading) {
       return <div> Loading... </div>;
     }

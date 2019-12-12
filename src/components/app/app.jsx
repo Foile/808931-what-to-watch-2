@@ -15,6 +15,8 @@ import Constants from "../../const";
 import withAuth from "../../hocs/with-auth/with-auth";
 import MyList from "../my-list/my-list";
 import withLoaded from "../../hocs/with-loaded/with-loaded";
+import {Router} from "react-router-dom";
+import history from "../../reducers/history";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -23,25 +25,20 @@ class App extends React.PureComponent {
 
   render() {
     console.log(this.props);
-    const {films, onChangeGenre, onGetMovies, genres, submitHandler, isAuthorizationRequired, auth, addComment, loadMore, isLoadMoreVisible, promo} = this.props;
-    return <Switch>
-      <Route path="/" component={MainScreen}/>
-      <Route path="/mylist" component={withAuth(MyList)} />
-      <Route path="/login" exact render={() => <UserPage submitHandler={submitHandler} isAuthorizationRequired={isAuthorizationRequired}/>}/>
-      <Route path="/films/:id" exact render={(props) =>
-        <ErrorBoundary>
-          <MovieCardFull {...props} films={films} auth={auth} />
-        </ErrorBoundary>}/>
-      <Route path="/films/:id/review" exact render={(props) =>
-        <ErrorBoundary>
-          <AddReview {...props} films={films} auth={auth} submitHandler={addComment} />
-        </ErrorBoundary>}/>
+    const {films, auth, addComment} = this.props;
+    return <Router history={history}><Switch>
+      <Route path="/" exact component={MainScreen}/>
+      <Route path="/mylist" exact component={withAuth(MyList)} />
+      <Route path="/login" exact component={UserPage}/>}/>
+      <Route path="/films/:id" exact component={MovieCardFull}/>
+      <Route path="/films/:id/review" exact component={withAuth(AddReview)}/>
       <Route path="/films/:id/:nav" exact render={(props) =>
         <ErrorBoundary>
           <MovieCardFull {...props} films={films} auth={auth} />
         </ErrorBoundary>}/>
       <Route component = {NotFound}/>
-    </Switch>;
+    </Switch>
+    </Router>;
   }
 }
 
@@ -96,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {App};
-export default withLoaded(`movies`, `promo`)(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

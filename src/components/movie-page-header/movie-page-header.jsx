@@ -21,12 +21,13 @@ const MovieHeader = (props) => {
       </nav> : <React.Fragment/>}
       <div className="user-block">
         { auth ? <div className="user-block__avatar">
+        <Link to={`/mylist`}>
           <img
             src={`${API_URL}/${auth.avatarUrl}`}
             alt={auth.name}
             width="63"
             height="63"
-          />
+          /></Link>
         </div> :
           <Link to="/login">Sign in</Link>}
       </div>

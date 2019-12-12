@@ -10,8 +10,6 @@ import apiDispatcher from "./reducers/api-dispatcher/api-dispatcher";
 import createAPI from "./api";
 import App from "./components/app/app";
 
-import {BrowserRouter} from "react-router-dom";
-
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));
 
@@ -26,9 +24,7 @@ const init = () => {
   store.dispatch(apiDispatcher.checkAuth());
   
   ReactDOM.render(<Provider store={store}>
-    <BrowserRouter>
       <App />
-    </BrowserRouter>
   </Provider>,
   document.querySelector(`#root`)
   );

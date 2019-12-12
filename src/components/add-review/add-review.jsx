@@ -3,6 +3,8 @@ import {Redirect} from "react-router-dom";
 import {string, number, func, bool, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import MovieHeader from "../movie-page-header/movie-page-header";
+import history from "../../reducers/history";
+import {connect} from 'react-redux';
 
 function increaseBrightness(hex, percent) {
   hex = hex.replace(/^\s*#|\s*$/g, ``);
@@ -19,14 +21,10 @@ function increaseBrightness(hex, percent) {
 }
 
 const AddReview = (props) => {
-  const {submitHandler, isAuthorizationRequired, films, match, onChangeActiveItem, activeItem, auth} = props;
+  const {submitHandler, films, match, onChangeActiveItem, activeItem, auth} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
-  if (isAuthorizationRequired === false) {
-    return <Redirect to="/login"></Redirect>;
-  }
-
   if (!movie) {
-    return <Redirect to={`/`}></Redirect>;
+    return  history.push(`/`);
   }
 
   return <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
@@ -81,7 +79,7 @@ const AddReview = (props) => {
 };
 
 
-AddReview.propTypes = {isAuthorizationRequired: bool,
+AddReview.propTypes = {
   activeItem: number,
   auth: shape({}),
   films: arrayOf(shape({
@@ -97,12 +95,25 @@ AddReview.propTypes = {isAuthorizationRequired: bool,
     starring: arrayOf(string)
   }),
   submitHandler: func,
-  onChangeActiveItem: func,
   match: shape({
     params: shape({
       id: string
     })
   })
 };
+
+const mapStateToProps = (state, ownProps) => {
+  const res = Object.assign({}, ownProps, {
+    films: state.data.allFilms,
+    movie: state.data.allFilms && state.data.allFilms.find(({id}) => id === Number(ownProps.match.params.id)),
+    auth: state.user.auth,
+  });
+  return res;
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  addComment: (movieId, rating, text) => dispatch(apiDispatcher.addComment(movieId, rating, text)),
+});
+
 export {AddReview};
-export default withActiveItem(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(AddReview));
