@@ -1,22 +1,23 @@
 import React from "react";
 import {shape, string, number} from "prop-types";
-import {Link, BrowserRouter} from "react-router-dom";
-import {API_URL} from "../../api";
+import {Link} from "react-router-dom";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
 
-const MovieHeader = (props) => {
-  const {auth, movie} = props;
+const Header = (props) => {
+  const {auth, movie, type, title} = props;
+  const {id, name} = movie || {};
   return <React.Fragment>
-    <header className="page-header movie-card__head">
+    <header className={`page-header ${type}`}>
       <Logo/>
+      {title ? <h1 class="page-title user-page__title">{title}</h1> : <React.Fragment/>}
       {movie ? <nav className="breadcrumbs">
         <ul className="breadcrumbs__list">
           <li className="breadcrumbs__item">
-            <Link className="breadcrumbs__link" to={`/films/${movie.id}`}>{movie.name}</Link>
+            <Link className="breadcrumbs__link" to={`/films/${id}`}>{name}</Link>
           </li>
           <li className="breadcrumbs__item">
-            <Link className="breadcrumbs__link" to ={`/films/${movie.id}/review`}>Add review</Link>
+            <Link className="breadcrumbs__link" to ={`/films/${id}/review`}>Add review</Link>
           </li>
         </ul>
       </nav> : <React.Fragment/>}
@@ -24,10 +25,10 @@ const MovieHeader = (props) => {
     </header></React.Fragment>;
 };
 
-MovieHeader.propTypes = {auth: shape({
+Header.propTypes = {auth: shape({
   name: string,
   avatarUrl: string
 }),
 movie: shape({id: number, name: string})};
 
-export default MovieHeader;
+export default Header;

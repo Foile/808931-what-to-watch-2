@@ -8,7 +8,8 @@ export const ActionType = {
   AUTH: `AUTH`,
   UPDATE_COMMENTS: `UPDATE_COMMENTS`,
   LOAD_MORE: `LOAD_MORE`,
-  LOAD_PROMO: `LOAD_PROMO`
+  LOAD_PROMO: `LOAD_PROMO`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`
 
 };
 
@@ -16,7 +17,6 @@ const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(
 const snakeToCamel = (snakeString) => snakeString.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace(`-`, ``).replace(`_`, ``));
 
 const convertData = (origin) => {
-  console.log(origin);
   const newObject = {};
   Object.keys(origin).forEach((prop) =>{
     newObject[snakeToCamel(prop)] = origin[prop];
@@ -24,12 +24,12 @@ const convertData = (origin) => {
   return newObject;
 };
 
-const convertMoviesData = (movies) => movies.map((movie) => convertData(movie));
+const convertArrayData = (items => items.map((item) => convertData(item)));
 
 const ActionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
   getMovies: (films) => {
-    const res = {type: ActionType.GET_MOVIES, payload: convertMoviesData(films)};
+    const res = {type: ActionType.GET_MOVIES, payload: convertArrayData(films)};
     return res;
   },
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
@@ -38,7 +38,8 @@ const ActionCreator = {
   auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)}),
   updateComments: (filmId, comments) => ({type: ActionType.UPDATE_COMMENTS, payload: {filmId, comments: convertData(comments)}}),
   loadMore: (limit) => ({type: ActionType.LOAD_MORE, payload: limit}),
-  loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)})
+  loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)}),
+  loadFavorites: (favorites) => ({type: ActionType.LOAD_FAVORITES, payload: convertArrayData(favorites)})
 };
 
 export default ActionCreator;

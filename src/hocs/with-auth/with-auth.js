@@ -1,5 +1,7 @@
 import React, {PureComponent} from 'react';
 import UserPage from "../../components/user-page/user-page";
+import {compose} from "redux";
+import {connect} from 'react-redux';
 
 const withAuth = (Component) => {
   class WithAuth extends PureComponent {
@@ -20,4 +22,11 @@ const withAuth = (Component) => {
   return WithAuth;
 };
 
-export default withAuth;
+const mapStateToProps = (state) => ({
+  isAuthorizationRequired: state.user.isAuthorizationRequired,
+  auth: state.user.auth
+});
+export default compose(
+  connect(mapStateToProps),
+  withAuth
+);

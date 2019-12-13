@@ -39,10 +39,16 @@ class MainScreen extends PureComponent {
   }
 }
 
+MainScreen.defaultProps={
+  films:[],
+  genre: Constants.DEFAULT_GENRE,
+  genres: [Constants.DEFAULT_GENRE]
+}
+
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     films: getLimitFilteredFilms(state),
-    genres: state.data.genres || [Constants.DEFAULT_GENRE],
+    genres: state.data.genres,
     isAuthorizationRequired: state.user.isAuthorizationRequired,
     auth: state.user.auth,
     limit: state.user.limit,

@@ -32,5 +32,9 @@ MoviesList.propTypes = {
   onChangeActiveItem: func,
 };
 
+MoviesList.defaultProps = {
+  movies:[]
+}
+
 export {MoviesList};
 export default withActiveItem(MoviesList);

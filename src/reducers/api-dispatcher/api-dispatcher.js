@@ -7,10 +7,18 @@ const apiDispatcher = {
   loadFilms: () => (dispatch) => {
     dispatch(startLoading(`movies`));
     return api.get(`/films`)
-      .then((response) => {
-        dispatch(ActionCreator.getMovies(response.data));
-        dispatch(ActionCreator.getGenres(response.data));
+      .then(({data}) => {
+        dispatch(ActionCreator.getMovies(data));
+        dispatch(ActionCreator.getGenres(data));
         dispatch(stopLoading(`movies`));
+      });
+  },
+  loadFavoriteFilms: () => (dispatch) => {
+    dispatch(startLoading(`favorite`));
+    return api.get(`/favorite`)
+      .then(({data}) => {
+        dispatch(ActionCreator.loadFavorites(data));
+        dispatch(stopLoading(`favorite`));
       });
   },
   loadPromoFilm: () => (dispatch) => {
@@ -31,8 +39,9 @@ const apiDispatcher = {
   },
   addComment: (filmId, rating, comment) => (dispatch) => {
     return api.post(`/comments/${filmId}`, {rating, comment})
-    .then(({data}) => {
-      dispatch(ActionCreator.updateComments(filmId, data));
+    .then((response) => {
+      console.log(response)
+      dispatch(ActionCreator.updateComments(filmId, response.data));
       dispatch(stopLoading(`comments`));
       history.push(`/films/${filmId}/reviews`);
     }

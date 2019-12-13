@@ -11,7 +11,7 @@ const Login = (props) => {
         const email = evt.target.querySelector(`#user-email`).value;
         const password = evt.target.querySelector(`#user-password`).value;
         submitHandler(email, password);
-        history.push(`/`);
+        history.goBack();
       }
     }>
       <div className="sign-in__fields">

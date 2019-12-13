@@ -16,6 +16,7 @@ const createAPI = (dispatch) => {
   const onFail = (err) => {
     if (err.response.status === 401) {
       dispatch(ActionCreator.requireAuthorization(true));
+      
     }
     return err;
   };

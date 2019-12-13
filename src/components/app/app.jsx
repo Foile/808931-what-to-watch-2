@@ -12,7 +12,6 @@ import MovieCardFull from "../movie-card-full/movie-card-full";
 import NotFound from "../not-found/not-found";
 import AddReview from "../add-review/add-review";
 import Constants from "../../const";
-import withAuth from "../../hocs/with-auth/with-auth";
 import MyList from "../my-list/my-list";
 import withLoaded from "../../hocs/with-loaded/with-loaded";
 import {Router} from "react-router-dom";
@@ -25,17 +24,14 @@ class App extends React.PureComponent {
 
   render() {
     console.log(this.props);
-    const {films, auth, addComment} = this.props;
+    const {films, auth} = this.props;
     return <Router history={history}><Switch>
       <Route path="/" exact component={MainScreen}/>
-      <Route path="/mylist" exact component={withAuth(MyList)} />
+      <Route path="/mylist" exact component={MyList} />
       <Route path="/login" exact component={UserPage}/>}/>
       <Route path="/films/:id" exact component={MovieCardFull}/>
-      <Route path="/films/:id/review" exact component={withAuth(AddReview)}/>
-      <Route path="/films/:id/:nav" exact render={(props) =>
-        <ErrorBoundary>
-          <MovieCardFull {...props} films={films} auth={auth} />
-        </ErrorBoundary>}/>
+      <Route path="/films/:id/review" exact component={AddReview}/>
+      <Route path="/films/:id/:nav" exact component ={MovieCardFull}/>
       <Route component = {NotFound}/>
     </Switch>
     </Router>;

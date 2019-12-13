@@ -2,16 +2,13 @@ import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {bindActionCreators} from "redux";
 
-// import {loadFavorite} from "@store/movies-data/actions";
-// import {getFavoriteMovies} from "@store/movies-data/selectors";
-
-import MovieHeader from "../../components/movie-page-header/movie-page-header";
+import Header from "../../components/header/header";
 import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
 
 import withAuth from "../../hocs/with-auth/with-auth";
+import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 
 class MyList extends React.PureComponent {
   constructor(props) {
@@ -24,17 +21,15 @@ class MyList extends React.PureComponent {
   }
 
   render() {
-    const {favoriteMovies} = this.props;
+    const {favoriteMovies, auth} = this.props;
 
     return (
       <div className="user-page">
-        <MovieHeader
-        />
-
-        <MoviesList
-          movies={favoriteMovies}
-        />
-
+        <Header auth={auth} type="user-page__head" title="My list"/>
+        <section class="catalog">
+        <h2 class="catalog__title visually-hidden">Catalog</h2>
+        <MoviesList movies={favoriteMovies} />
+        </section>
         <PageFooter/>
       </div>
     );
@@ -71,11 +66,11 @@ MyList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  favoriteMovies: getFavoriteMovies(state),
+  favoriteMovies: state.user.favoriteMovies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadFavoriteMovies: bindActionCreators(loadFavorite, dispatch)
+  onLoadFavoriteMovies: () => dispatch(apiDispatcher.loadFavoriteFilms())
 });
 
 export {MyList};

@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from "react-test-renderer";
-import MoviePageHeader from './movie-page-header';
+import Header from "./header";
 
-it(`MoviePageHeader correctly renders after relaunch`, () => {
+it(`Header correctly renders after relaunch`, () => {
   const tree = renderer
-  .create(<MoviePageHeader
+  .create(<Header
     auth = {{name: `test`, avatarUrl: `ya.ru`}} />)
   .toJSON();
   expect(tree).toMatchSnapshot();

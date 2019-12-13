@@ -1,6 +1,6 @@
 import React from "react";
 import {string, number, bool, shape} from "prop-types";
-import MovieHeader from "../movie-page-header/movie-page-header";
+import Header from "../header/header";
 import MovieCardDescSmall from "../movie-card-desc-small/movie-card-desc-small";
 
 
@@ -14,7 +14,7 @@ const MovieCardInfo = (props) =>
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <MovieHeader auth={props.auth} ></MovieHeader>
+      <Header auth={props.auth} ></Header>
       <div className={`movie-card__wrap`}>
         <div className="movie-card__info">
           {props.review ? <MovieCardDescSmall {...props}/> : <React.Fragment/>}

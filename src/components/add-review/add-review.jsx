@@ -1,32 +1,20 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import {string, number, func, bool, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
-import MovieHeader from "../movie-page-header/movie-page-header";
+import Header from "../header/header";
 import history from "../../history";
 import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
 import {connect} from 'react-redux';
-
-function increaseBrightness(hex, percent) {
-  hex = hex.replace(/^\s*#|\s*$/g, ``);
-  if (hex.length === 3) {
-    hex = hex.replace(/(.)/g, `$1$1`);
-  }
-  let r = parseInt(hex.substr(0, 2), 16);
-  let g = parseInt(hex.substr(2, 2), 16);
-  let b = parseInt(hex.substr(4, 2), 16);
-  return `#` +
-     ((0 | (1 << 8) + r + (256 - r) * percent / 100).toString(16)).substr(1) +
-     ((0 | (1 << 8) + g + (256 - g) * percent / 100).toString(16)).substr(1) +
-     ((0 | (1 << 8) + b + (256 - b) * percent / 100).toString(16)).substr(1);
-}
+import {increaseBrightness} from "../../helpers/helpers";
+import {compose} from "redux";
+import withAuth from "../../hocs/with-auth/with-auth";
 
 const AddReview = (props) => {
   const {addComment, films, match, onChangeActiveItem, activeItem, auth} = props;
   const movie = films.find(({id}) => id === Number(match.params.id));
   if (!movie) {
     return history.push(`/`);
-  }
+  };
 
   return <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
     <div className="movie-card__header">
@@ -37,7 +25,7 @@ const AddReview = (props) => {
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <MovieHeader auth={auth} movie={movie}></MovieHeader>
+      <Header auth={auth} movie={movie}></Header>
       <div className="movie-card__poster movie-card__poster--small">
         <img src={movie.posterImage} alt={`${movie.name} poster`} width="218" height="327" />
       </div>
@@ -103,6 +91,11 @@ AddReview.propTypes = {
   })
 };
 
+AddReview.defaultProps = {
+  activeItem: 0,
+  films:[]
+};
+
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     films: state.data.allFilms,
@@ -117,4 +110,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AddReview};
-export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(AddReview));
+const enhance = compose(
+  withActiveItem,
+  withAuth,
+  connect(mapStateToProps, mapDispatchToProps));
+
+export default enhance(AddReview)
+
+

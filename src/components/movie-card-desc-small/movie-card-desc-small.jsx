@@ -2,11 +2,14 @@ import React from "react";
 import {string, shape, number, bool} from "prop-types";
 import {Link} from "react-router-dom";
 
-const MovieCardDescSmall = (props) => <div className="movie-card__desc">
-  <h2 className="movie-card__title">{props.movie.name}</h2>
+const MovieCardDescSmall = (props) => {
+const {movie} = props;
+const {id, name, genre, released} = movie || {};
+return <div className="movie-card__desc">
+  <h2 className="movie-card__title">{name}</h2>
   <p className="movie-card__meta">
-    <span className="movie-card__genre">{props.movie.genre}</span>
-    <span className="movie-card__year">{props.movie.released}</span>
+    <span className="movie-card__genre">{genre}</span>
+    <span className="movie-card__year">{released}</span>
   </p>
 
   <div className="movie-card__buttons">
@@ -32,9 +35,9 @@ const MovieCardDescSmall = (props) => <div className="movie-card__desc">
       </svg>
       <span>My list</span>
     </button>
-    {props.review ? <Link to={`/films/${props.movie.id}/review`} className="btn movie-card__button">Add review</Link> : ``}
+    {props.review ? <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link> : ``}
   </div>
-</div>;
+</div>};
 
 MovieCardDescSmall.propTypes = {review: bool,
   movie: shape({
