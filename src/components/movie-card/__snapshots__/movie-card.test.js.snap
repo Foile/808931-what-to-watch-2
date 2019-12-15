@@ -3,29 +3,36 @@
 exports[`MovieCard correctly renders after relaunch 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <div
-    className="small-movie-card__image"
+  <a
+    className="small-movie-card__link"
+    href="/films/1"
+    onClick={[Function]}
   >
-    <video
-      height={175}
-      poster=""
-      src=""
-      width={280}
-    />
-  </div>
-  <h3
-    className="small-movie-card__title"
-  >
-    <a
-      className="small-movie-card__link"
-      href="movie-page.html"
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        className=""
+        controls={false}
+        height="180"
+        muted={true}
+        poster=""
+        width="280"
+      >
+        <source
+          src=""
+          type="video/mp4"
+        />
+      </video>
+    </div>
+    <h3
+      className="small-movie-card__title"
     >
       Macbeth
-    </a>
-  </h3>
+    </h3>
+  </a>
 </article>
 `;

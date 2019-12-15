@@ -1,13 +1,13 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MovieCard from './movie-card';
+import {MovieCard} from './movie-card';
 Enzyme.configure({adapter: new Adapter()});
 
 it(`MovieCard correct run afrer click and mouseEnter`, () => {
   const onClick = jest.fn();
   const onMouseEnter = jest.fn();
-  const movie = {id: 1, name: `Macbeth`, previewImage: ``, videoLink: ``};
+  const movie = {id: 1, name: `Macbeth`, previewVideoLink: ``, previewImage: ``};
   const screen = shallow(
       <MovieCard
         movie = {movie}

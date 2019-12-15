@@ -9,11 +9,10 @@ class MoviesList extends PureComponent {
   }
 
   render() {
-    const {movies, onHeaderClick, onChangeActiveItem = () => ({})} = this.props;
+    const {movies, onChangeActiveItem = () => ({})} = this.props;
     return <div className="catalog__movies-list">{movies.map((movie, i) =>
       <MovieCard key = {`movie-${movie.id}`}
         movie = {movie}
-        onHeaderClick = {onHeaderClick}
         onMouseEnter= {() => onChangeActiveItem(i)}
         onMouseLeave = {() => onChangeActiveItem(-1)}>
       </MovieCard>
@@ -27,9 +26,12 @@ MoviesList.propTypes = {
     name: string,
     previewImage: string
   })).isRequired,
-  onHeaderClick: func.isRequired,
   activeItem: number,
   onChangeActiveItem: func,
+};
+
+MoviesList.defaultProps = {
+  movies: []
 };
 
 export {MoviesList};

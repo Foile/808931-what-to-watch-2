@@ -3,30 +3,47 @@ export const ActionType = {
   GET_MOVIES: `GET_MOVIES`,
   CHANGE_GENRE: `CHANGE_GENRE`,
   GET_GENRES: `GET_GENRES`,
-  REQUIRE_AUTH: `REQUIRE_AUTH`
+  REQUIRE_AUTH: `REQUIRE_AUTH`,
+  LOGIN: `LOGIN`,
+  AUTH: `AUTH`,
+  UPDATE_COMMENTS: `UPDATE_COMMENTS`,
+  LOAD_MORE: `LOAD_MORE`,
+  LOAD_PROMO: `LOAD_PROMO`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+  UPDATE_MOVIE: `UPDATE_MOVIE`,
+  ERROR: `ERROR`
+
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
 const snakeToCamel = (snakeString) => snakeString.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace(`-`, ``).replace(`_`, ``));
 
-const convertMovieData = (movie) => {
-  const newMovie = {};
-  Object.keys(movie).forEach((prop) =>{
-    newMovie[snakeToCamel(prop)] = movie[prop];
+const convertData = (origin) => {
+  const newObject = {};
+  Object.keys(origin).forEach((prop) =>{
+    newObject[snakeToCamel(prop)] = origin[prop];
   });
-  return newMovie;
+  return newObject;
 };
 
-const convertMoviesData = (movies) => movies.map((movie) => convertMovieData(movie));
+const convertArrayData = (items) => items.map((item) => convertData(item));
 
 const ActionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
   getMovies: (films) => {
-    const res = {type: ActionType.GET_MOVIES, payload: convertMoviesData(films)};
+    const res = {type: ActionType.GET_MOVIES, payload: convertArrayData(films)};
     return res;
   },
   getGenres: (films) => ({type: ActionType.GET_GENRES, payload: getGenresList(films)}),
-  requireAuthorization: () => ({type: ActionType.REQUIRE_AUTH, payload: true})
+  requireAuthorization: (isRequired) => ({type: ActionType.REQUIRE_AUTH, payload: isRequired}),
+  login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}}),
+  auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)}),
+  updateComments: (comments) => ({type: ActionType.UPDATE_COMMENTS, payload: comments}),
+  loadMore: (limit) => ({type: ActionType.LOAD_MORE, payload: limit}),
+  loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)}),
+  loadFavorites: (favorites) => ({type: ActionType.LOAD_FAVORITES, payload: convertArrayData(favorites)}),
+  updateMovie: (movie) => ({type: ActionType.UPDATE_MOVIE, payload: convertData(movie)}),
+  pushError: (errorText) => ({type: ActionType.ERROR, payload: errorText})
 };
 
 export default ActionCreator;

@@ -1,72 +1,37 @@
 import React, {PureComponent} from "react";
-import {shape, func, string, number} from 'prop-types';
-import VideoPlayer from '../video-player/video-player';
+import {shape, func, string, number, instanceOf} from "prop-types";
+import VideoPlayer from "../video-player/video-player";
+import {Link} from "react-router-dom";
+import withPlayOnHover from "../../hocs/with-play-on-hover/with-play-on-hover";
 
-export default class MovieCard extends PureComponent {
+class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false
-    };
-
-    this.timerId = null;
-    this.HOVER_DELAY = 1000;
-
-    this._handleMovieClick = this._handleMovieClick.bind(this);
-    this._handleMovieEnter = this._handleMovieEnter.bind(this);
-    this._handleMovieLeave = this._handleMovieLeave.bind(this);
-  }
-
-  _handleMovieClick() {
-    const {movie} = this.props;
-
-    location.href = `/film-overview-${movie.id}`;
-  }
-
-  _handleMovieEnter() {
-    this.timerId = setTimeout(() => {
-      this.setState({isPlaying: true});
-    }, this.HOVER_DELAY);
-  }
-
-  _handleMovieLeave() {
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-      this.setState({isPlaying: false});
-    }
   }
 
   render() {
-    const {movie, onMouseEnter, onMouseLeave} = this.props;
-    const {previewImage, name, videoLink} = movie;
-    return <article
+    const {movie, onEnter, onLeave, videoRef} = this.props;
+    const {previewImage, name, previewVideoLink, id} = movie;
+    return (<article
       className="small-movie-card catalog__movies-card"
-      onClick={() => this._handleMovieClick()}
-      onMouseEnter={() => {
-        onMouseEnter(); this._handleMovieEnter();
-      }}
-      onMouseLeave={() => {
-        onMouseLeave();
-        this._handleMovieLeave();
-      }}
-    >
-      <div className="small-movie-card__image">
-        <VideoPlayer
-          src={videoLink}
-          poster={previewImage}
-          muted={true}
-          width={280}
-          height={175}
-          playerState={this.state}
-        />
-      </div>
-      <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}>
+      <Link to ={`/films/${id}`} className="small-movie-card__link">
+        <div className="small-movie-card__image">
+          <VideoPlayer
+            videoRef={videoRef}
+            link={previewVideoLink}
+            poster={previewImage}
+            muted
+            width="280"
+            height="180"
+          />
+        </div>
+        <h3 className="small-movie-card__title">
           {name}
-        </a>
-      </h3>
-    </article>;
+        </h3>
+      </Link>
+    </article>);
   }
 }
 
@@ -75,8 +40,20 @@ MovieCard.propTypes = {movie: shape({
   name: string,
   previewImage: string
 }).isRequired,
-onHeaderClick: func,
-onMouseEnter: func,
-onMouseLeave: func};
+onEnter: func,
+onLeave: func,
+videoRef: shape({
+  current: instanceOf(Element)
+}).isRequired};
+
+MovieCard.defaultProps = {
+  movie: {},
+  videoRef: {},
+  onEnter: () => {},
+  onLeave: () => {},
+};
+
+export {MovieCard};
+export default withPlayOnHover(MovieCard);
 
 
