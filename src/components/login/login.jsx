@@ -35,5 +35,4 @@ Login.propTypes = {
   submitHandler: PropTypes.func
 };
 
-
 export default Login;

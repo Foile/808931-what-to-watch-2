@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react';
-import UserPage from "../../components/user-page/user-page";
+import UserPage from "../../components/pages/user-page/user-page";
 import {compose} from "redux";
 import {connect} from 'react-redux';
+import {bool} from "prop-types";
 
 const withAuth = (Component) => {
   class WithAuth extends PureComponent {
@@ -11,13 +12,13 @@ const withAuth = (Component) => {
 
     render() {
       const {isAuthorizationRequired} = this.props;
-      return isAuthorizationRequired ? 
-      <UserPage {...this.props} />
-      : <Component {...this.props} />;
+      return isAuthorizationRequired ?
+        <UserPage {...this.props} />
+        : <Component {...this.props} />;
     }
   }
 
-  WithAuth.propTypes = {};
+  WithAuth.propTypes = {isAuthorizationRequired: bool};
 
   return WithAuth;
 };
@@ -27,6 +28,6 @@ const mapStateToProps = (state) => ({
   auth: state.user.auth
 });
 export default compose(
-  connect(mapStateToProps),
-  withAuth
+    connect(mapStateToProps),
+    withAuth
 );

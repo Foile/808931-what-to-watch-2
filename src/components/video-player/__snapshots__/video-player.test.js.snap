@@ -2,9 +2,16 @@
 
 exports[`VideoPlayer correctly renders after relaunch 1`] = `
 <video
-  height={175}
+  className=""
+  controls={false}
+  height="175"
+  muted={true}
   poster=""
-  src=""
-  width={280}
-/>
+  width="280"
+>
+  <source
+    src=""
+    type="video/mp4"
+  />
+</video>
 `;

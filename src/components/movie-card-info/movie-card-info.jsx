@@ -14,19 +14,19 @@ const MovieCardInfo = (props) =>
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <Header auth={props.auth} ></Header>
+      <Header auth={props.auth} type="movie-card__head"></Header>
       <div className={`movie-card__wrap`}>
         <div className="movie-card__info">
-          {props.review ? <MovieCardDescSmall {...props}/> : <React.Fragment/>}
-          {!props.review ? <div className={`movie-card__poster`}>
+          {props.review && <MovieCardDescSmall {...props}/> }
+          {!props.review && <div className={`movie-card__poster`}>
             <img
               src={props.movie.posterImage}
               alt={`${props.movie.name} poster`}
               width="218"
               height="327"
             />
-          </div> : <React.Fragment/>}
-          {!props.review ? <MovieCardDescSmall {...props}/> : <React.Fragment/>}
+          </div>}
+          {!props.review && <MovieCardDescSmall {...props}/>}
         </div>
       </div>
     </React.Fragment>

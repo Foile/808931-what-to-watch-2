@@ -5,20 +5,16 @@ import history from "../../history";
 
 const apiDispatcher = {
   loadFilms: () => (dispatch) => {
-    dispatch(startLoading(`movies`));
     return api.get(`/films`)
       .then(({data}) => {
         dispatch(ActionCreator.getMovies(data));
         dispatch(ActionCreator.getGenres(data));
-        dispatch(stopLoading(`movies`));
       });
   },
   loadFavoriteFilms: () => (dispatch) => {
-    dispatch(startLoading(`favorite`));
     return api.get(`/favorite`)
       .then(({data}) => {
         dispatch(ActionCreator.loadFavorites(data));
-        dispatch(stopLoading(`favorite`));
       });
   },
   loadPromoFilm: () => (dispatch) => {
@@ -30,22 +26,26 @@ const apiDispatcher = {
       });
   },
   loadFilmComments: (id) => (dispatch) => {
-    dispatch(startLoading(`comments`));
     return api.get(`/comments/${id}`)
     .then(({data}) => {
       dispatch(ActionCreator.updateComments(id, data));
-      dispatch(stopLoading(`comments`));
     });
   },
   addComment: (filmId, rating, comment) => (dispatch) => {
     return api.post(`/comments/${filmId}`, {rating, comment})
     .then((response) => {
-      console.log(response)
       dispatch(ActionCreator.updateComments(filmId, response.data));
-      dispatch(stopLoading(`comments`));
       history.push(`/films/${filmId}/reviews`);
     }
     );
+  },
+  toggleFavorite: (id, status) => (dispatch) => {
+    return api.post(`/favorite/${id}/${status}`)
+    .then(({data}) => {
+      if (data) {
+        dispatch(ActionCreator.updateMovie(data));
+      }
+    });
   },
   checkAuth: () => (dispatch) => {
     return api.get(`/login`)

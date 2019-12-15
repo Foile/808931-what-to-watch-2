@@ -10,7 +10,7 @@ const Header = (props) => {
   return <React.Fragment>
     <header className={`page-header ${type}`}>
       <Logo/>
-      {title ? <h1 class="page-title user-page__title">{title}</h1> : <React.Fragment/>}
+      {title ? <h1 className="page-title user-page__title">{title}</h1> : <React.Fragment/>}
       {movie ? <nav className="breadcrumbs">
         <ul className="breadcrumbs__list">
           <li className="breadcrumbs__item">
@@ -25,10 +25,14 @@ const Header = (props) => {
     </header></React.Fragment>;
 };
 
-Header.propTypes = {auth: shape({
-  name: string,
-  avatarUrl: string
-}),
-movie: shape({id: number, name: string})};
+Header.propTypes = {
+  auth: shape({
+    name: string,
+    avatarUrl: string
+  }),
+  type: string,
+  title: string,
+
+  movie: shape({id: number, name: string})};
 
 export default Header;

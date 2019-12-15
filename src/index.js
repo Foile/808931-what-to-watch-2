@@ -22,9 +22,9 @@ const init = () => {
   store.dispatch(apiDispatcher.loadPromoFilm());
   store.dispatch(apiDispatcher.loadFilms());
   store.dispatch(apiDispatcher.checkAuth());
-  
+
   ReactDOM.render(<Provider store={store}>
-      <App />
+    <App />
   </Provider>,
   document.querySelector(`#root`)
   );

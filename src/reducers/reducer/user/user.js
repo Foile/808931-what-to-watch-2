@@ -3,7 +3,7 @@ import Constant from "../../../const";
 
 const initialState = {
   isAuthorizationRequired: false,
-  limit: Constant.FILMS_LIMIT_RATE,
+  limit: Constant.FILMS_LIMIT_DEF,
   genre: Constant.DEFAULT_GENRE
 };
 

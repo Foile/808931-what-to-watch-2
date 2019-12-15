@@ -1,59 +1,46 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import React from "react";
+import {string, shape, instanceOf, bool} from "prop-types";
 
-export default class VideoPlayer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._videoRef = React.createRef();
-    this.state = {isPlaying: props.playerState.isPlaying};
-  }
+const VideoPlayer = ({classes, poster, link, width, height, controls, muted, videoRef}) => {
 
-  componentDidMount() {
-    const {src, muted} = this.props;
-    const video = this._videoRef.current;
-    if (video === null) {
-      return;
-    }
-    video.src = src;
-    video.muted = muted;
-  }
-
-  componentDidUpdate() {
-    const {playerState} = this.props;
-    this.setState({isPlaying: playerState.isPlaying});
-    const video = this._videoRef.current;
-    if (video === null) {
-      return;
-    }
-    if (playerState.isPlaying) {
-      video.play();
-    } else {
-      video.pause();
-      video.currentTime = 0;
-      video.load();
-    }
-  }
-
-  render() {
-    const {src, poster, width, height} = this.props;
-
-    return <video
-      src={src}
+  return (
+    <video
+      className={classes}
+      ref={videoRef}
       poster={poster}
+      controls={controls}
       width={width}
       height={height}
-      ref={this._videoRef}
-    />;
-  }
-}
+      muted={muted}
+    >
+      <source src={link} type="video/mp4"/>
+    </video>
+  );
+};
+
+VideoPlayer.defaultProps = {
+  classes: ``,
+  poster: ``,
+  link: ``,
+  width: ``,
+  height: ``,
+  controls: false,
+  muted: false,
+  videoRef: null,
+};
 
 VideoPlayer.propTypes = {
-  src: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
-  muted: PropTypes.bool.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  playerState: PropTypes.exact({
-    isPlaying: PropTypes.bool
-  }).isRequired
+  classes: string,
+  poster: string.isRequired,
+  link: string.isRequired,
+  width: string,
+  height: string,
+  controls: bool,
+  muted: bool,
+  videoRef: shape({
+    current: instanceOf(Element)
+  }).isRequired,
 };
+
+export {VideoPlayer};
+export default VideoPlayer;

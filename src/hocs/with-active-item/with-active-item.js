@@ -1,4 +1,5 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
+import {number, func} from "prop-types";
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
@@ -27,7 +28,8 @@ const withActiveItem = (Component) => {
     }
   }
 
-  WithActiveItem.propTypes = {};
+  WithActiveItem.propTypes = {onChangeActiveItem: func,
+    activeItem: number};
 
   return WithActiveItem;
 };

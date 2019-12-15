@@ -9,7 +9,8 @@ export const ActionType = {
   UPDATE_COMMENTS: `UPDATE_COMMENTS`,
   LOAD_MORE: `LOAD_MORE`,
   LOAD_PROMO: `LOAD_PROMO`,
-  LOAD_FAVORITES: `LOAD_FAVORITES`
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+  UPDATE_MOVIE: `UPDATE_MOVIE`
 
 };
 
@@ -24,7 +25,7 @@ const convertData = (origin) => {
   return newObject;
 };
 
-const convertArrayData = (items => items.map((item) => convertData(item)));
+const convertArrayData = (items) => items.map((item) => convertData(item));
 
 const ActionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
@@ -36,10 +37,11 @@ const ActionCreator = {
   requireAuthorization: (isRequired) => ({type: ActionType.REQUIRE_AUTH, payload: isRequired}),
   login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}}),
   auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)}),
-  updateComments: (filmId, comments) => ({type: ActionType.UPDATE_COMMENTS, payload: {filmId, comments: convertData(comments)}}),
+  updateComments: (filmId, comments) => ({type: ActionType.UPDATE_COMMENTS, payload: comments}),
   loadMore: (limit) => ({type: ActionType.LOAD_MORE, payload: limit}),
   loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)}),
-  loadFavorites: (favorites) => ({type: ActionType.LOAD_FAVORITES, payload: convertArrayData(favorites)})
+  loadFavorites: (favorites) => ({type: ActionType.LOAD_FAVORITES, payload: convertArrayData(favorites)}),
+  updateMovie: (movie) => ({type: ActionType.UPDATE_MOVIE, payload: convertData(movie)})
 };
 
 export default ActionCreator;

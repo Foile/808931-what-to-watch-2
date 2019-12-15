@@ -1,6 +1,7 @@
 import React from "react";
 import {API_URL} from "../../api";
 import {Link} from "react-router-dom";
+import {shape, string} from "prop-types";
 
 const UserBlock = (props) => <div className="user-block">
   { props.auth ? <div className="user-block__avatar">
@@ -14,5 +15,12 @@ const UserBlock = (props) => <div className="user-block">
   </div> :
     <Link to="/login">Sign in</Link>}
 </div>;
+
+UserBlock.propTypes = {
+  auth: shape({
+    name: string,
+    avatarUrl: string
+  })
+};
 
 export default UserBlock;
