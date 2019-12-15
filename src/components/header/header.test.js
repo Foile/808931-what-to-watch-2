@@ -7,7 +7,7 @@ it(`Header correctly renders after relaunch`, () => {
   const tree = renderer
   .create(
       <BrowserRouter>
-        <Header
+        <Header type="movie-card__head"
           auth = {{name: `test`, avatarUrl: `ya.ru`}} />
       </BrowserRouter>
   )

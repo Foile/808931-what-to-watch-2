@@ -2,7 +2,7 @@
 
 exports[`Header correctly renders after relaunch 1`] = `
 <header
-  className="page-header undefined"
+  className="page-header movie-card__head"
 >
   <div
     className="logo"
