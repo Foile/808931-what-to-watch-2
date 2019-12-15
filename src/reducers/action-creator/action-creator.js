@@ -10,7 +10,8 @@ export const ActionType = {
   LOAD_MORE: `LOAD_MORE`,
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
-  UPDATE_MOVIE: `UPDATE_MOVIE`
+  UPDATE_MOVIE: `UPDATE_MOVIE`,
+  ERROR: `ERROR`
 
 };
 
@@ -37,11 +38,12 @@ const ActionCreator = {
   requireAuthorization: (isRequired) => ({type: ActionType.REQUIRE_AUTH, payload: isRequired}),
   login: (email, password) => ({type: ActionType.LOGIN, payload: {email, password}}),
   auth: (user) => ({type: ActionType.AUTH, payload: convertData(user)}),
-  updateComments: (filmId, comments) => ({type: ActionType.UPDATE_COMMENTS, payload: comments}),
+  updateComments: (comments) => ({type: ActionType.UPDATE_COMMENTS, payload: comments}),
   loadMore: (limit) => ({type: ActionType.LOAD_MORE, payload: limit}),
   loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)}),
   loadFavorites: (favorites) => ({type: ActionType.LOAD_FAVORITES, payload: convertArrayData(favorites)}),
-  updateMovie: (movie) => ({type: ActionType.UPDATE_MOVIE, payload: convertData(movie)})
+  updateMovie: (movie) => ({type: ActionType.UPDATE_MOVIE, payload: convertData(movie)}),
+  pushError: (errorText) => ({type: ActionType.ERROR, payload: errorText})
 };
 
 export default ActionCreator;

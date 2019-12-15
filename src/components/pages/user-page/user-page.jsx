@@ -6,9 +6,13 @@ import PageFooter from "../../page-footer/page-footer";
 import Logo from "../../logo/logo";
 import {connect} from 'react-redux';
 import apiDispatcher from "../../../reducers/api-dispatcher/api-dispatcher";
+import history from "../../../history";
 
-const UserPage = (props) =>
-  <div className="user-page">
+const UserPage = (props) =>{
+  if (!props.isAuthorizationRequired) {
+    history.goBack();
+  }
+  return <div className="user-page">
     <header className="page-header user-page__head">
       <Logo/>
       <h1 className="page-title user-page__title">Sign in</h1>
@@ -17,7 +21,9 @@ const UserPage = (props) =>
       <Login submitHandler={props.submitHandler} isAuthorizationRequired={props.isAuthorizationRequired}></Login>
     </div>
     <PageFooter/>
-  </div>;
+  </div>
+  ;
+};
 
 UserPage.propTypes = {
   submitHandler: func.isRequired,

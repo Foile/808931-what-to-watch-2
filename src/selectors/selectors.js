@@ -1,9 +1,10 @@
 import {createSelector} from 'reselect';
+import moment from "moment";
 
-const getFilmList = (state) => state.data.allFilms ? state.data.allFilms : [];
-const getActiveGenre = (state) => state.user.genre ? state.user.genre : `All genres`;
-const getLimitFilms = (state) => state.user.limit ? state.user.limit : 0;
-
+const getFilmList = (state) => state.data.allFilms || [];
+const getActiveGenre = (state) => state.user.genre || `All genres`;
+const getLimitFilms = (state) => state.user.limit || 0;
+const getComments = (state) => state.data.comments || [];
 const getFilteredMovies = createSelector(
     getFilmList,
     getActiveGenre,
@@ -17,5 +18,14 @@ const getLimitFilteredFilms = createSelector(
     getLimitFilms,
     (movies, limit) => movies.slice(0, limit)
 );
+
+export const getSortedComments = createSelector(
+    [getComments],
+    (comments) => {
+      comments.sort((a, b) => moment(b.date) - moment(a.date));
+      return comments;
+    }
+);
+
 
 export default getLimitFilteredFilms;

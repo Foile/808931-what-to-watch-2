@@ -28,16 +28,18 @@ const apiDispatcher = {
   loadFilmComments: (id) => (dispatch) => {
     return api.get(`/comments/${id}`)
     .then(({data}) => {
-      dispatch(ActionCreator.updateComments(id, data));
+      dispatch(ActionCreator.updateComments(data));
     });
   },
   addComment: (filmId, rating, comment) => (dispatch) => {
     return api.post(`/comments/${filmId}`, {rating, comment})
     .then((response) => {
-      dispatch(ActionCreator.updateComments(filmId, response.data));
+      dispatch(ActionCreator.updateComments(response.data));
       history.push(`/films/${filmId}/reviews`);
-    }
-    );
+    })
+    .catch((err) => {
+      dispatch(ActionCreator.pushError(err.response));
+    });
   },
   toggleFavorite: (id, status) => (dispatch) => {
     return api.post(`/favorite/${id}/${status}`)
@@ -54,7 +56,10 @@ const apiDispatcher = {
         if (data) {
           dispatch(ActionCreator.auth(data));
         }
-      });
+      })
+    .catch((err) => {
+      dispatch(ActionCreator.pushError(err.response));
+    });
   },
   login: (email, password) => (dispatch) => {
     return api.post(`/login`, {email, password})

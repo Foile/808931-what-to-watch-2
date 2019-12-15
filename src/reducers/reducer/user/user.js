@@ -15,6 +15,7 @@ const user = (state = initialState, action) => {
     case ActionType.AUTH: return Object.assign({}, state, {auth: action.payload});
     case ActionType.LOAD_MORE: return Object.assign({}, state, {limit: state.limit + action.payload});
     case ActionType.LOAD_FAVORITES: return Object.assign({}, state, {favoriteMovies: action.payload});
+    case ActionType.ERROR: return Object.assign({}, state, {error: action.payload});
   }
   return state;
 };

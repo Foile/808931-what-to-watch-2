@@ -112,6 +112,7 @@ exports[`AddReview correctly renders after relaunch 1`] = `
       className="add-review__form"
       onSubmit={[Function]}
     >
+      
       <div
         className="rating"
       >

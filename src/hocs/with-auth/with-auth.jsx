@@ -27,6 +27,8 @@ const mapStateToProps = (state) => ({
   isAuthorizationRequired: state.user.isAuthorizationRequired,
   auth: state.user.auth
 });
+
+export {withAuth};
 export default compose(
     connect(mapStateToProps),
     withAuth

@@ -1,6 +1,7 @@
 import React from "react";
 import {string, number, func, shape, arrayOf} from "prop-types";
 import withActiveItem from "../../../hocs/with-active-item/with-active-item";
+import withErrorFormReview from "../../../hocs/with-error-form-review/with-error-form-review";
 import Header from "../../header/header";
 import apiDispatcher from "../../../reducers/api-dispatcher/api-dispatcher";
 import {connect} from 'react-redux';
@@ -10,7 +11,8 @@ import withAuth from "../../../hocs/with-auth/with-auth";
 import Constants from "../../../const";
 
 const AddReview = (props) => {
-  const {onAddComment, movie, match, onChangeActiveItem, activeItem, auth} = props;
+
+  const {onAddComment, movie, match, onChangeActiveItem, activeItem, auth, error, onChange} = props;
   const {id, backgroundColor, backgroundImage, name, posterImage} = movie || {};
   return <section className="movie-card movie-card--full" style={{background: backgroundColor}}>
     <div className="movie-card__header">
@@ -30,15 +32,22 @@ const AddReview = (props) => {
       <form action="#" className="add-review__form" onSubmit={
         (evt) => {
           evt.preventDefault();
-          const rating = activeItem;
+          const rating = (activeItem || Constants.DEF_STAR);
           const comment = evt.target.querySelector(`#review-text`).value;
-          onAddComment(match.params.id, rating, comment);
+          if (!error) {
+            onAddComment(match.params.id, rating, comment);
+          }
         }
       }>
+        {
+          error && <div className="add-review__message">
+            <p>{error}</p>
+          </div>
+        }
         <div className="rating">
           <div className="rating__stars">
             {Constants.STARS.map((rating) => {
-              const isChecked = rating === activeItem;
+              const isChecked = rating === (activeItem || Constants.DEF_STAR);
               return <React.Fragment key = {`rating-movie-${id}-input-${rating}`}>
                 <input className={`rating__input`}
                   checked={isChecked}
@@ -58,7 +67,7 @@ const AddReview = (props) => {
         </div>
 
         <div className="add-review__text" style={{background: increaseBrightness(backgroundColor, 20)}}>
-          <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+          <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange={onChange}></textarea>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit" style={{color: increaseBrightness(backgroundColor, -80)}}>Post</button>
           </div>
@@ -69,6 +78,8 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
+  error: string,
+  onChange: func,
   onAddComment: func,
   onChangeActiveItem: func,
   activeItem: number,
@@ -92,15 +103,15 @@ AddReview.propTypes = {
 
 AddReview.defaultProps = {
   activeItem: Constants.DEF_STAR,
-  films: []
+  films: [],
+  error: ``
 };
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     films: state.data.allFilms,
     movie: state.data.allFilms && state.data.allFilms.find(({id}) => id === Number(ownProps.match.params.id)),
-    auth: state.user.auth,
-    activeItem: ownProps.activeItem
+    auth: state.user.auth
   });
   return res;
 };
@@ -113,6 +124,7 @@ export {AddReview};
 const enhance = compose(
     withActiveItem,
     withAuth,
+    withErrorFormReview,
     connect(mapStateToProps, mapDispatchToProps));
 
 export default enhance(AddReview);

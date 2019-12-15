@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withAuth correctly renders after relaunch 1`] = `<div />`;

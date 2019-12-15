@@ -3,6 +3,7 @@ import {number, shape, arrayOf, func} from "prop-types";
 import {connect} from "react-redux";
 import {formatDate} from "../../../helpers/helpers";
 import apiDispatcher from "../../../reducers/api-dispatcher/api-dispatcher";
+import {getSortedComments} from "../../../selectors/selectors";
 
 class MovieCardTabsReviews extends React.PureComponent {
   constructor(props) {
@@ -45,7 +46,7 @@ MovieCardTabsReviews.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     id: Number(ownProps.match.params.id),
-    comments: state.data.comments,
+    comments: getSortedComments(state),
   });
   return res;
 };
