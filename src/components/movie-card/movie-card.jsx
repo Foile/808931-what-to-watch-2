@@ -1,8 +1,9 @@
 import React, {PureComponent} from "react";
 import {shape, func, string, number, instanceOf} from "prop-types";
-import VideoPlayer from "../video-player/video-player";
 import {Link} from "react-router-dom";
-import withPlayOnHover from "../../hocs/with-play-on-hover/with-play-on-hover";
+import VideoPlayer from "@components/video-player/video-player";
+import withPlayOnHover from "@hocs/with-play-on-hover/with-play-on-hover";
+import {MovieCardConstants} from "@constants";
 
 class MovieCard extends PureComponent {
   constructor(props) {
@@ -23,8 +24,8 @@ class MovieCard extends PureComponent {
             link={previewVideoLink}
             poster={previewImage}
             muted
-            width="280"
-            height="180"
+            width={MovieCardConstants.WIGTH}
+            height={MovieCardConstants.HEIGHT}
           />
         </div>
         <h3 className="small-movie-card__title">

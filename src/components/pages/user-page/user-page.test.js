@@ -1,15 +1,18 @@
-import React from 'react';
+import React from "react";
 import renderer from "react-test-renderer";
-import {UserPage} from './user-page';
+import UserPage from "./user-page";
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import configureMockStore from "redux-mock-store";
 
-it(`UserPage correctly renders after relaunch`, () => {
+const mockStore = configureMockStore();
+const store = mockStore({data: {}, user: {}});
+
+it(`App correctly renders after relaunch`, () => {
   const tree = renderer
-  .create(<BrowserRouter>
-    <UserPage
-      submitHandler = {jest.fn()}
-      isAuthorizationRequired = {true}
-    /></BrowserRouter>)
+  .create(<Provider store={store}><BrowserRouter><UserPage/>
+  </BrowserRouter></Provider>
+  )
   .toJSON();
   expect(tree).toMatchSnapshot();
 });

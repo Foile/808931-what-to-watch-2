@@ -41,9 +41,9 @@ exports[`Header correctly renders after relaunch 1`] = `
       >
         <img
           alt="test"
-          height="63"
+          height="80"
           src="https://htmlacademy-react-2.appspot.com/ya.ru"
-          width="63"
+          width="80"
         />
       </a>
     </div>

@@ -1,12 +1,11 @@
-
 import React from "react";
 import {bool, func} from "prop-types";
-import Login from "../../login/login";
-import PageFooter from "../../page-footer/page-footer";
-import Logo from "../../logo/logo";
+import Login from "@components/login/login";
+import PageFooter from "@components/page-footer/page-footer";
+import Logo from "@components/logo/logo";
 import {connect} from 'react-redux';
-import apiDispatcher from "../../../reducers/api-dispatcher/api-dispatcher";
-import history from "../../../history";
+import apiDispatcher from "@reducers/api-dispatcher/api-dispatcher";
+import history from "@src/history";
 
 const UserPage = (props) =>{
   if (!props.isAuthorizationRequired) {
@@ -18,7 +17,7 @@ const UserPage = (props) =>{
       <h1 className="page-title user-page__title">Sign in</h1>
     </header>
     <div className="sign-in user-page__content">
-      <Login submitHandler={props.submitHandler} isAuthorizationRequired={props.isAuthorizationRequired}></Login>
+      <Login onSubmit={props.onSubmit} isAuthorizationRequired={props.isAuthorizationRequired}></Login>
     </div>
     <PageFooter/>
   </div>
@@ -26,19 +25,19 @@ const UserPage = (props) =>{
 };
 
 UserPage.propTypes = {
-  submitHandler: func.isRequired,
+  onSubmit: func.isRequired,
   isAuthorizationRequired: bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   const res = Object.assign({}, ownProps, {
     isAuthorizationRequired: state.user.isAuthorizationRequired,
-    auth: state.user.auth,
+    auth: state.user.auth
   });
   return res;
 };
 const mapDispatchToProps = (dispatch) => ({
-  submitHandler: (email, password) => dispatch(apiDispatcher.login(email, password)),
+  onSubmit: (email, password) => dispatch(apiDispatcher.login(email, password)),
 });
 
 export {UserPage};

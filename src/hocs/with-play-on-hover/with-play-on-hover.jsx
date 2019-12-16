@@ -1,5 +1,5 @@
 import React from "react";
-import Constants from "../../const";
+import Constants from "@constants";
 
 const withPlayOnHover = (Component) => {
   class WithPlayerOnHover extends React.PureComponent {

@@ -2,7 +2,7 @@ import React from "react";
 
 const MIN_REVIEW_LENGTH = 50;
 const MAX_REVIEW_LENGTH = 400;
-export const ERR_MESSAGE = `Please enter from 50 to 400 symbols`;
+const ERR_MESSAGE = `Please enter from 50 to 400 symbols`;
 
 const validateForm = (comment) => {
   return (comment && (comment.length >= MIN_REVIEW_LENGTH && comment.length <= MAX_REVIEW_LENGTH));
@@ -13,7 +13,7 @@ const withErrorFormReview = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        error: ``,
+        error: ` `,
       };
       this._handleChange = this._handleChange.bind(this);
     }

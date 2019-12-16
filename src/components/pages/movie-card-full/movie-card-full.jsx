@@ -1,12 +1,12 @@
 import React from "react";
 import {string, shape, arrayOf} from "prop-types";
-import MovieCardInfo from "../../movie-card-info/movie-card-info";
-import MoviesList from "../../movies-list/movies-list";
-import PageFooter from "../../page-footer/page-footer";
-import MovieCardTabs from "../../movie-card-tabs/movie-card-tabs";
 import {connect} from 'react-redux';
-import ActionCreator from "../../../reducers/action-creator/action-creator";
-import Constants from "../../../const";
+import MovieCardInfo from "@components/movie-card-info/movie-card-info";
+import MoviesList from "@components/movies-list/movies-list";
+import PageFooter from "@components/page-footer/page-footer";
+import MovieCardTabs from "@components/movie-card-tabs/movie-card-tabs";
+import Constants, {MovieCardInfoConstants} from "@constants";
+import ActionCreator from "@reducers/action-creator/action-creator";
 
 class MovieCardFull extends React.PureComponent {
   constructor(props) {
@@ -23,7 +23,10 @@ class MovieCardFull extends React.PureComponent {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={posterImage} alt={name} width="218" height="327" />
+              <img src={posterImage}
+                alt={name}
+                width={MovieCardInfoConstants.WIDTH}
+                height={MovieCardInfoConstants.HEIGHT} />
             </div>
             <MovieCardTabs {... this.props} movie={movie}/>
           </div>

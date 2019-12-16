@@ -1,4 +1,3 @@
-
 export const ActionType = {
   GET_MOVIES: `GET_MOVIES`,
   CHANGE_GENRE: `CHANGE_GENRE`,
@@ -11,12 +10,12 @@ export const ActionType = {
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
   UPDATE_MOVIE: `UPDATE_MOVIE`,
-  ERROR: `ERROR`
-
+  ERROR: `ERROR`,
+  ERROR_OFF: `ERROR_OFF`,
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
-const snakeToCamel = (snakeString) => snakeString.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace(`-`, ``).replace(`_`, ``));
+const snakeToCamel = (snakeString) => snakeString.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
 
 const convertData = (origin) => {
   const newObject = {};
@@ -28,7 +27,7 @@ const convertData = (origin) => {
 
 const convertArrayData = (items) => items.map((item) => convertData(item));
 
-const ActionCreator = {
+const actionCreator = {
   changeGenre: (genre) => ({type: ActionType.CHANGE_GENRE, payload: genre}),
   getMovies: (films) => {
     const res = {type: ActionType.GET_MOVIES, payload: convertArrayData(films)};
@@ -43,7 +42,8 @@ const ActionCreator = {
   loadPromo: (film) => ({type: ActionType.LOAD_PROMO, payload: convertData(film)}),
   loadFavorites: (favorites) => ({type: ActionType.LOAD_FAVORITES, payload: convertArrayData(favorites)}),
   updateMovie: (movie) => ({type: ActionType.UPDATE_MOVIE, payload: convertData(movie)}),
-  pushError: (errorText) => ({type: ActionType.ERROR, payload: errorText})
+  pushError: (errorText) => ({type: ActionType.ERROR, payload: errorText}),
+  pushErrorOff: (errorText) => ({type: ActionType.ERROR_OFF, payload: errorText})
 };
 
-export default ActionCreator;
+export default actionCreator;

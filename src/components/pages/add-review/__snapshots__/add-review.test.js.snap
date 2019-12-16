@@ -112,7 +112,6 @@ exports[`AddReview correctly renders after relaunch 1`] = `
       className="add-review__form"
       onSubmit={[Function]}
     >
-      
       <div
         className="rating"
       >
@@ -222,7 +221,7 @@ exports[`AddReview correctly renders after relaunch 1`] = `
             className="add-review__btn"
             style={
               Object {
-                "color": "#fefefe",
+                "color": "black",
               }
             }
             type="submit"

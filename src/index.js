@@ -5,10 +5,10 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from 'redux-thunk';
 
-import reducer from "./reducers/reducer/reducer";
-import apiDispatcher from "./reducers/api-dispatcher/api-dispatcher";
-import createAPI from "./api";
-import App from "./components/app/app";
+import reducer from "@reducers/reducer/reducer";
+import apiDispatcher from "@reducers/api-dispatcher/api-dispatcher";
+import createAPI from "@src/api";
+import App from "@components/app/app";
 
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));

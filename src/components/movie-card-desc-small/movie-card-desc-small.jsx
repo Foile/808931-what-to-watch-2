@@ -1,9 +1,9 @@
 import React from "react";
-import {string, shape, number, bool, func} from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import apiDispatcher from "../../reducers/api-dispatcher/api-dispatcher";
-import history from "../../history";
+import {string, shape, number, bool, func} from "prop-types";
+import apiDispatcher from "@reducers/api-dispatcher/api-dispatcher";
+import history from "@history";
 
 const MovieCardDescSmall = (props) => {
   const {movie, onAddToFavorites, onRemoveFromFavorites, onPlay} = props;

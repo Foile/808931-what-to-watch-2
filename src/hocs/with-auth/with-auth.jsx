@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import UserPage from "../../components/pages/user-page/user-page";
+import UserPage from "@components/pages/user-page/user-page";
 import {compose} from "redux";
 import {connect} from 'react-redux';
 import {bool} from "prop-types";

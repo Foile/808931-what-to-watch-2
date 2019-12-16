@@ -1,10 +1,9 @@
 import React from "react";
+import {EMAIL_REGEX} from "@constants";
 
-const EMAIL_REGEX = RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 const ERR_MESSAGE_EMAIL = `Please enter a valid email address`;
 const ERR_MESSAGE_EMPTY = `Please fill your`;
 const FIELD_NAMES = {'user-email': `email`, 'user-password': `password`};
-
 
 function validateEmail(email) {
   const re = EMAIL_REGEX.test(String(email).toLowerCase());
@@ -17,7 +16,7 @@ const withErrorFormUser = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        error: ``
+        error: ` `
       };
       this._handleChange = this._handleChange.bind(this);
     }
@@ -42,5 +41,4 @@ const withErrorFormUser = (Component) => {
   return WithErrorFormUser;
 };
 
-
-export default withErrorFormUser;
+export default (withErrorFormUser);

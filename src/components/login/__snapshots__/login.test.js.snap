@@ -9,7 +9,6 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
     className="sign-in__form"
     onSubmit={[Function]}
   >
-    
     <div
       className="sign-in__fields"
     >
@@ -17,10 +16,9 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
         className="sign-in__field"
       >
         <input
-          className="sign-in__input "
+          className="sign-in__input undefined"
           id="user-email"
           name="user-email"
-          onChange={[Function]}
           placeholder="Email address"
           type="email"
         />
@@ -38,7 +36,6 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
           className="sign-in__input"
           id="user-password"
           name="user-password"
-          onChange={[Function]}
           placeholder="Password"
           type="password"
         />

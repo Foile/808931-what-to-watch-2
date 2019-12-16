@@ -2,13 +2,11 @@ import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {shape, arrayOf, string, number, func, bool} from "prop-types";
-
-import Header from "../../header/header";
-import MoviesList from "../../movies-list/movies-list";
-import PageFooter from "../../page-footer/page-footer";
-
-import withAuth from "../../../hocs/with-auth/with-auth";
-import apiDispatcher from "../../../reducers/api-dispatcher/api-dispatcher";
+import Header from "@components/header/header";
+import MoviesList from "@components/movies-list/movies-list";
+import PageFooter from "@components/page-footer/page-footer";
+import withAuth from "@hocs/with-auth/with-auth";
+import apiDispatcher from "@reducers/api-dispatcher/api-dispatcher";
 
 class MyList extends React.PureComponent {
   constructor(props) {

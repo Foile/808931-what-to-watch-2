@@ -20,7 +20,7 @@ exports[`MovieCard correctly renders after relaunch 1`] = `
         height="180"
         muted={true}
         poster=""
-        width="280"
+        width=""
       >
         <source
           src=""

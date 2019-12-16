@@ -1,4 +1,4 @@
-import {ActionType} from '../../action-creator/action-creator';
+import {ActionType} from '@reducers/action-creator/action-creator';
 
 const initialState = {
   allFilms: [],
@@ -14,7 +14,7 @@ const replaceFilmData = (state, movie) => {
   return state;
 };
 
-const data = (state = initialState, action) => {
+const createDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_MOVIES: return Object.assign({}, state, {allFilms: action.payload});
     case ActionType.GET_GENRES: return Object.assign({}, state, {genres: action.payload});
@@ -25,4 +25,4 @@ const data = (state = initialState, action) => {
   return state;
 };
 
-export default data;
+export default createDataReducer;

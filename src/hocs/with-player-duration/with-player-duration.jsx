@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {formatTime} from "../../helpers/helpers";
+import {formatTime} from "@helpers";
 
 const withPlayerDuration = (Component) => {
   class WithPlayerDuration extends React.PureComponent {

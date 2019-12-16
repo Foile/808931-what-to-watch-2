@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import history from "../../history";
+import history from "@history";
 
 const withPlayer = (Component) => {
   class WithPlayer extends React.PureComponent {

@@ -1,5 +1,5 @@
 import React from "react";
-import {formatTime} from "../../../helpers/helpers";
+import {formatTime} from "@helpers";
 import {number, string, arrayOf} from "prop-types";
 
 const MovieCardTabsDetails = ({director, starring, runTime, genre, released}) => <div className="movie-card__text movie-card__row">
@@ -11,7 +11,7 @@ const MovieCardTabsDetails = ({director, starring, runTime, genre, released}) =>
     <p className="movie-card__details-item">
       <strong className="movie-card__details-name">Starring</strong>
       <span className="movie-card__details-value">
-        {starring || [].map((actor)=>`${actor}\n`)}
+        { starring.map((actor)=>`${actor}\n`)}
       </span>
     </p>
   </div>
@@ -38,5 +38,9 @@ MovieCardTabsDetails.propTypes = {
   genre: string,
   released: number
 };
+MovieCardTabsDetails.defaultProps = {
+  starring: []
+};
+
 
 export default MovieCardTabsDetails;

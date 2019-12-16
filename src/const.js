@@ -13,6 +13,29 @@ const Constants = {
   ],
   STARS: [1, 2, 3, 4, 5],
   DEF_STAR: 3,
-  TABS: [`Overview`, `Details`, `Reviews`]
+  TABS: [`Overview`, `Details`, `Reviews`],
+  DEF_COLOR: `#888888`
 };
+
 export default Constants;
+
+export const EMAIL_REGEX = RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+
+export const MovieCardConstants = {
+  WIDTH: `280`,
+  HEIGHT: `180`
+};
+
+export const UserBlockConstants = {
+  WIDTH: `80`,
+  HEIGHT: `80`
+};
+export const MovieCardInfoConstants = {
+  WIDTH: `218`,
+  HEIGHT: `327`
+};
+
+export const MoviePlayerConstants = {
+  WIDTH: `100%`,
+  HEIGHT: `100%`
+};

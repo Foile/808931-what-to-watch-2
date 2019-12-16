@@ -21,5 +21,16 @@ export const increaseBrightness = (hex, percent) => {
        ((0 | (1 << 8) + b + (256 - b) * percent / 100).toString(16)).substr(1);
 };
 
-export const ratingDesc = (rating = 0) => Constant.USER_RATINGS.filter(({min}) => min <= rating).pop().title;
+export const getContrast = function (hexcolor) {
+  if (hexcolor.slice(0, 1) === `#`) {
+    hexcolor = hexcolor.slice(1);
+  }
+  let r = parseInt(hexcolor.substr(0, 2), 16);
+  let g = parseInt(hexcolor.substr(2, 2), 16);
+  let b = parseInt(hexcolor.substr(4, 2), 16);
+  let yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+  return (yiq >= 128) ? `black` : `white`;
+};
+
+export const getRatingDesc = (rating = 0) => Constant.USER_RATINGS.filter(({min}) => min <= rating).pop().title;
 

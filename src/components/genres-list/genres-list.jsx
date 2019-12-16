@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withActiveItem from "@hocs/with-active-item/with-active-item";
 
 const GenresList = ({genres, onGenreClick, activeItem, onChangeActiveItem = ()=>({})}) =>
   (<ul className="catalog__genres-list">

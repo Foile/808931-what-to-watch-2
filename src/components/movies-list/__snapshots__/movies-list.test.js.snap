@@ -23,7 +23,7 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
           height="180"
           muted={true}
           poster=""
-          width="280"
+          width=""
         >
           <source
             src=""
@@ -57,7 +57,7 @@ exports[`MoviesList correctly renders after relaunch 1`] = `
           height="180"
           muted={true}
           poster=""
-          width="280"
+          width=""
         >
           <source
             src=""

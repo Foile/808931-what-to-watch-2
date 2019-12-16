@@ -2,9 +2,10 @@ import React from "react";
 import {compose} from "recompose";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player";
-import VideoPlayerProgress from "../video-player/video-player-progress/video-player-progress";
-import withPlayer from "../../hocs/with-player/with-player";
+import VideoPlayer from "@components/video-player/video-player";
+import VideoPlayerProgress from "@components/video-player/video-player-progress/video-player-progress";
+import withPlayer from "@hocs/with-player/with-player";
+import {MoviePlayerConstants} from "@constants";
 
 const MoviePlayer = ({movie, videoRef, onPlayPause, onClosePlayer, onFullScreen, isPlaying}) => {
   const {name, videoLink, previewImage} = movie;
@@ -15,13 +16,13 @@ const MoviePlayer = ({movie, videoRef, onPlayPause, onClosePlayer, onFullScreen,
         classes="player__video"
         link={videoLink}
         poster={previewImage}
-        width="100%"
-        height="100%"
+        width={MoviePlayerConstants.WIDTH}
+        height={MoviePlayerConstants.HEIGHT}
       />
 
       <button
         type="button"
-        className="player__exit"
+        className="player__exit"s
         onClick={onClosePlayer}
       >
         Exit</button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import withPlayOnHover from "./with-play-on-hover";
-import Constants from "../../const";
+import Constants from "@constants";
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({adapter: new Adapter()});

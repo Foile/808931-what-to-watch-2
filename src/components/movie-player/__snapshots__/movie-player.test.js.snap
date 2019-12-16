@@ -20,6 +20,7 @@ exports[`Movie player correctly renders after relaunch 1`] = `
   <button
     className="player__exit"
     onClick={[Function]}
+    s={true}
     type="button"
   >
     Exit

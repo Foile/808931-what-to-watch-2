@@ -9,7 +9,7 @@ const WrappedMockComponent = withActiveItem(MockComponent);
 
 it(`withActiveItem test`, () => {
   let wrapper = shallow(<WrappedMockComponent/>);
-  wrapper.instance()._onChangeActiveItemHandler(3);
+  wrapper.instance()._handleChangeActiveItem(3);
   expect(wrapper.state().activeItem).toEqual(3);
 });
 

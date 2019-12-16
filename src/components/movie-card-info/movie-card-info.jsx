@@ -1,8 +1,8 @@
 import React from "react";
 import {string, number, bool, shape} from "prop-types";
-import Header from "../header/header";
-import MovieCardDescSmall from "../movie-card-desc-small/movie-card-desc-small";
-
+import Header from "@components/header/header";
+import MovieCardDescSmall from "@components/movie-card-desc-small/movie-card-desc-small";
+import {MovieCardInfoConstants} from "@constants";
 
 const MovieCardInfo = (props) =>
   props.movie ?
@@ -18,14 +18,16 @@ const MovieCardInfo = (props) =>
       <div className={`movie-card__wrap`}>
         <div className="movie-card__info">
           {props.review && <MovieCardDescSmall {...props}/> }
-          {!props.review && <div className={`movie-card__poster`}>
-            <img
-              src={props.movie.posterImage}
-              alt={`${props.movie.name} poster`}
-              width="218"
-              height="327"
-            />
-          </div>}
+          {!props.review && (
+            <div className={`movie-card__poster`}>
+              <img
+                src={props.movie.posterImage}
+                alt={`${props.movie.name} poster`}
+                width={MovieCardInfoConstants.WIDTH}
+                height={MovieCardInfoConstants.HEIGTH}
+              />
+            </div>
+          )}
           {!props.review && <MovieCardDescSmall {...props}/>}
         </div>
       </div>

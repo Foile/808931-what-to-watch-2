@@ -1,42 +1,35 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {arrayOf, shape, string, func, bool, number} from "prop-types";
-import MoviesList from "../../movies-list/movies-list";
-import GenresList from "../../genres-list/genres-list";
-import MovieCardInfo from "../../movie-card-info/movie-card-info";
-import PageFooter from "../../page-footer/page-footer";
-import ShowMore from "../../show-more/show-more";
+import MoviesList from "@components/movies-list/movies-list";
+import GenresList from "@components/genres-list/genres-list";
+import MovieCardInfo from "@components/movie-card-info/movie-card-info";
+import PageFooter from "@components/page-footer/page-footer";
+import ShowMore from "@components/show-more/show-more";
 import {connect} from "react-redux";
-import getLimitFilteredFilms from "../../../selectors/selectors";
-import Constants from "../../../const";
-import ActionCreator from "../../../reducers/action-creator/action-creator";
+import getLimitFilteredFilms from "@selectors";
+import Constants from "@src/const";
+import ActionCreator from "@reducers/action-creator/action-creator";
 
-
-class MainScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {films, onChangeGenre, genres, auth, loadMore, limit, promo, isAuthorizationRequired} = this.props;
-    const isLoadMoreVisible = limit <= films.length;
-    return (
-      <React.Fragment>
-        <section className="movie-card">
-          <MovieCardInfo movie={promo} auth={auth} isAuthorizationRequired={isAuthorizationRequired}></MovieCardInfo>
+const MainScreen = (props) => {
+  const {films, onChangeGenre, genres, auth, loadMore, limit, promo, isAuthorizationRequired} = props;
+  const isLoadMoreVisible = limit <= films.length;
+  return (
+    <React.Fragment>
+      <section className="movie-card">
+        <MovieCardInfo movie={promo} auth={auth} isAuthorizationRequired={isAuthorizationRequired}></MovieCardInfo>
+      </section>
+      <div className="page-content">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <GenresList genres = {genres} onGenreClick={onChangeGenre}/>
+          <MoviesList movies = {films}/>
+          {isLoadMoreVisible ? <ShowMore onClick = {loadMore}></ShowMore> : <div></div>}
         </section>
-        <div className="page-content">
-          <section className="catalog">
-            <h2 className="catalog__title visually-hidden">Catalog</h2>
-            <GenresList genres = {genres} onGenreClick={onChangeGenre}/>
-            <MoviesList movies = {films}/>
-            {isLoadMoreVisible ? <ShowMore onClick = {loadMore}></ShowMore> : <div></div>}
-          </section>
-          <PageFooter/>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+        <PageFooter/>
+      </div>
+    </React.Fragment>
+  );
+};
 
 MainScreen.defaultProps = {
   films: [],
@@ -84,3 +77,4 @@ MainScreen.propTypes = {
 
 export {MainScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
+

@@ -1,13 +1,18 @@
 import React from "react";
-import {number, shape, arrayOf, func} from "prop-types";
 import {connect} from "react-redux";
-import {formatDate} from "../../../helpers/helpers";
-import apiDispatcher from "../../../reducers/api-dispatcher/api-dispatcher";
-import {getSortedComments} from "../../../selectors/selectors";
+import {number, shape, arrayOf, func} from "prop-types";
+import {formatDate} from "@helpers";
+import {getSortedComments} from "@selectors";
+import apiDispatcher from "@reducers/api-dispatcher/api-dispatcher";
 
 class MovieCardTabsReviews extends React.PureComponent {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const {onGetComments, id} = this.props;
+    onGetComments(id);
   }
 
   render() {
@@ -15,7 +20,7 @@ class MovieCardTabsReviews extends React.PureComponent {
     return <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
         {
-          comments && comments.map((comment) =>
+          comments.map((comment) =>
             <div className="review" key={`movie-${id}-comment-${comment.id}`}>
               <blockquote className="review__quote">
                 <p className="review__text">{comment.comment}</p>
@@ -30,17 +35,16 @@ class MovieCardTabsReviews extends React.PureComponent {
       </div>
     </div>;
   }
-
-  componentDidMount() {
-    const {onGetComments, id} = this.props;
-    onGetComments(id);
-  }
 }
 
 MovieCardTabsReviews.propTypes = {
   id: number,
   comments: arrayOf(shape({})),
   onGetComments: func
+};
+
+MovieCardTabsReviews.defaultProps = {
+  comments: []
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -55,5 +59,5 @@ const mapDispatchToProps = (dispatch) => ({
   onGetComments: (id) => dispatch(apiDispatcher.loadFilmComments(id))
 });
 
-
+export {MovieCardTabsReviews};
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCardTabsReviews);

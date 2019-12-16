@@ -1,13 +1,13 @@
-import {ActionType} from '../../action-creator/action-creator';
-import Constant from "../../../const";
+import {ActionType} from '@reducers/action-creator/action-creator';
+import Constants from "@src/const";
 
 const initialState = {
   isAuthorizationRequired: false,
-  limit: Constant.FILMS_LIMIT_DEF,
-  genre: Constant.DEFAULT_GENRE
+  limit: Constants.FILMS_LIMIT_DEF,
+  genre: Constants.DEFAULT_GENRE
 };
 
-const user = (state = initialState, action) => {
+const createUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE: return Object.assign({}, state, {genre: action.payload});
     case ActionType.REQUIRE_AUTH: return Object.assign({}, state, {isAuthorizationRequired: action.payload});
@@ -16,8 +16,9 @@ const user = (state = initialState, action) => {
     case ActionType.LOAD_MORE: return Object.assign({}, state, {limit: state.limit + action.payload});
     case ActionType.LOAD_FAVORITES: return Object.assign({}, state, {favoriteMovies: action.payload});
     case ActionType.ERROR: return Object.assign({}, state, {error: action.payload});
+    case ActionType.ERROR_OFF: return Object.assign({}, state, {error: ``});
   }
   return state;
 };
 
-export default user;
+export default createUserReducer;

@@ -1,8 +1,8 @@
 import React from "react";
 import {shape, string, number} from "prop-types";
 import {Link} from "react-router-dom";
-import Logo from "../logo/logo";
-import UserBlock from "../user-block/user-block";
+import Logo from "@components/logo/logo";
+import UserBlock from "@components/user-block/user-block";
 
 const Header = (props) => {
   const {auth, movie, type, title} = props;

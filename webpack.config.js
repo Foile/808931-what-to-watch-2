@@ -23,7 +23,18 @@ module.exports = {
           loader: `babel-loader`,
         },
         resolve: {
-          extensions: [`.js`, `.jsx`]
+          extensions: [`.js`, `.jsx`],
+          alias: {
+            "@src": path.resolve(__dirname, `src`),
+            "@history": path.resolve(__dirname, `src/history.js`),
+            "@hocs": path.resolve(__dirname, `src/hocs`),
+            "@reducers": path.resolve(__dirname, `src/reducers`),
+            "@components": path.resolve(__dirname, `src/components`),
+            "@pages": path.resolve(__dirname, `src/components/pages`),
+            "@selectors": path.resolve(__dirname, `src/selectors/selectors.js`),
+            "@helpers": path.resolve(__dirname, `src/helpers/helpers.js`),
+            "@constants": path.resolve(__dirname, `src/const.js`),
+          }
         }
       }
     ],

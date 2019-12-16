@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import MovieCardTebsDetails from "./movie-card-tabs-details/movie-card-tabs-details";
 import MovieCardTabsReviews from "./movie-card-tabs-reviews/movie-card-tabs-reviews";
 import MovieCardTabsOverview from "./movie-card-tabs-overview/movie-card-tabs-overview";
-import Constants from "../../const";
+import Constants from "@constants";
 
 const tabSwitch = (nav = `overview`, movie, props) => {
   switch (nav) {
