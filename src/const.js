@@ -20,6 +20,7 @@ const Constants = {
 export default Constants;
 
 export const EMAIL_REGEX = RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+export const SNAKE_REGEX = RegExp(/([-_]\w)/g);
 
 export const MovieCardConstants = {
   WIDTH: `280`,

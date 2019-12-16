@@ -22,7 +22,7 @@ const MoviePlayer = ({movie, videoRef, onPlayPause, onClosePlayer, onFullScreen,
 
       <button
         type="button"
-        className="player__exit"s
+        className="player__exit"
         onClick={onClosePlayer}
       >
         Exit</button>

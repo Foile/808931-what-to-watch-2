@@ -6,7 +6,7 @@ import apiDispatcher from "@reducers/api-dispatcher/api-dispatcher";
 import history from "@history";
 
 const MovieCardDescSmall = (props) => {
-  const {movie, onAddToFavorites, onRemoveFromFavorites, onPlay} = props;
+  const {movie, onAddToFavorites, onRemoveFromFavorites, onPlay, isAuthorizationRequired} = props;
   const {id, name, genre, released, isFavorite} = movie || {};
   return <div className="movie-card__desc">
     <h2 className="movie-card__title">{name}</h2>
@@ -33,6 +33,9 @@ const MovieCardDescSmall = (props) => {
         type="button"
         onClick = {(evt) => {
           evt.preventDefault();
+          if (isAuthorizationRequired) {
+            history.push(`/login`);
+          }
           if (isFavorite) {
             return onRemoveFromFavorites(id);
           }
@@ -56,7 +59,13 @@ const mapDispatchToProps = (dispatch) => ({
   onRemoveFromFavorites: (id) => dispatch(apiDispatcher.toggleFavorite(id, 0)),
 });
 
+
+const mapStateToProps = (state) => ({
+  isAuthorizationRequired: state.user.isAuthorizationRequired
+});
+
 MovieCardDescSmall.propTypes = {
+  isAuthorizationRequired: bool,
   onAddToFavorites: func,
   onRemoveFromFavorites: func,
   onPlay: func,
@@ -75,4 +84,4 @@ MovieCardDescSmall.defaultProps = {
 };
 
 export {MovieCardDescSmall};
-export default connect(()=>({}), mapDispatchToProps)(MovieCardDescSmall);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCardDescSmall);

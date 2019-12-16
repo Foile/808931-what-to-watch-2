@@ -7,7 +7,7 @@ it(`UserPage correctly renders after relaunch`, () => {
   const tree = renderer
   .create(<BrowserRouter>
     <UserBlock
-      submitHandler = {jest.fn()}
+      onSubmit = {jest.fn()}
       isAuthorizationRequired = {true}
     /></BrowserRouter>)
   .toJSON();

@@ -1,3 +1,4 @@
+import {SNAKE_REGEX} from "@constants";
 export const ActionType = {
   GET_MOVIES: `GET_MOVIES`,
   CHANGE_GENRE: `CHANGE_GENRE`,
@@ -15,7 +16,7 @@ export const ActionType = {
 };
 
 const getGenresList = (films) => [`All genres`, ...Array.from(new Set(films.map(({genre}) => genre)))];
-const snakeToCamel = (snakeString) => snakeString.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
+const snakeToCamel = (snakeString) => snakeString.replace(SNAKE_REGEX, (g) => g[1].toUpperCase());
 
 const convertData = (origin) => {
   const newObject = {};

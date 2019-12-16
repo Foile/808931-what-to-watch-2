@@ -19,9 +19,9 @@ const init = () => {
           window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f)
   );
 
+  store.dispatch(apiDispatcher.checkAuth());
   store.dispatch(apiDispatcher.loadPromoFilm());
   store.dispatch(apiDispatcher.loadFilms());
-  store.dispatch(apiDispatcher.checkAuth());
 
   ReactDOM.render(<Provider store={store}>
     <App />
