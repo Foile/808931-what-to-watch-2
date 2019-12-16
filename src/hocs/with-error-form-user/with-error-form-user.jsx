@@ -5,10 +5,7 @@ const ERR_MESSAGE_EMAIL = `Please enter a valid email address`;
 const ERR_MESSAGE_EMPTY = `Please fill your`;
 const FIELD_NAMES = {'user-email': `email`, 'user-password': `password`};
 
-function validateEmail(email) {
-  const re = EMAIL_REGEX.test(String(email).toLowerCase());
-  return re;
-}
+const validateEmail = (email) => EMAIL_REGEX.test(String(email).toLowerCase());
 const validateEmpty = (value) => !value;
 
 const withErrorFormUser = (Component) => {

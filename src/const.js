@@ -1,4 +1,4 @@
-const Constants = {
+export default {
   MOVIE_PREVIEW_DELAY: 1000,
   FILMS_LIMIT_DEF: 8,
   FILMS_LIMIT_RATE: 20,
@@ -16,8 +16,6 @@ const Constants = {
   TABS: [`Overview`, `Details`, `Reviews`],
   DEF_COLOR: `#888888`
 };
-
-export default Constants;
 
 export const EMAIL_REGEX = RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 export const SNAKE_REGEX = RegExp(/([-_]\w)/g);
