@@ -6,7 +6,7 @@
   "jest": {
     "moduleNameMapper": {
       "@history": "<rootDir>/src/history.js",
-      "@helpers":  "<rootDir>/src/helpers/helpers.js",
+      "@helpers": "<rootDir>/src/helpers/helpers.js",
       "@constants": "<rootDir>/src/const.js",
       "@selectors": "<rootDir>/src/selectors/selectors.js",
       "@pages(.*)$": "<rootDir>/src/components/pages$1",
@@ -23,9 +23,9 @@
     "start": "webpack-dev-server"
   },
   "devDependencies": {
-    "^babel/core": "7.6.4",
-    "^babel/preset-env": "7.6.3",
-    "^babel/preset-react": "7.6.3",
+    "@babel/core": "7.6.4",
+    "@babel/preset-env": "7.6.3",
+    "@babel/preset-react": "7.6.3",
     "axios-mock-adapter": "1.17.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
