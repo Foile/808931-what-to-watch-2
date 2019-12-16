@@ -6,11 +6,11 @@ import {Provider} from "react-redux";
 import configureMockStore from "redux-mock-store";
 
 const mockStore = configureMockStore();
-const store = mockStore({data: {}, user: {}});
+const store = mockStore({data: {}, user: {isAuthorizationRequired: false}});
 
 it(`App correctly renders after relaunch`, () => {
   const tree = renderer
-  .create(<Provider store={store}><BrowserRouter><UserPage/>
+  .create(<Provider store={store} ><BrowserRouter><UserPage/>
   </BrowserRouter></Provider>
   )
   .toJSON();
